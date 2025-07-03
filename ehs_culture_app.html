@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Cultura de Segurança EHS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+    <style>
+        .bradley-arrow-1 { clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%); }
+        .bradley-arrow-2 { clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%); }
+        .bradley-arrow-3 { clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%); }
+        .bradley-arrow-4 { clip-path: polygon(10% 0, 100% 0, 90% 50%, 100% 100%, 10% 100%, 0 50%); }
+        
+        .hearts-diagonal { 
+            background: linear-gradient(45deg, transparent 48%, white 49%, white 51%, transparent 52%);
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="max-w-6xl mx-auto p-4">
+        <!-- Main Container -->
+        <div id="app-container">
+            <!-- Home Screen -->
+            <div id="home-screen">
+                <div class="text-center mb-12">
+                    <div class="flex justify-center mb-4">
+                        <div class="h-16 w-16 text-blue-600 flex items-center justify-center">
+                            <svg width="64" height="64" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L13.09 8.26L21.36 12L13.09 15.74L12 22L10.91 15.74L2.64 12L10.91 8.26L12 2Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Avaliação de Cultura de Segurança EHS</h1>
+                    <p class="text-lg text-gray-600 mb-8">Escolha sua metodologia de avaliação preferida para avaliar a maturidade da cultura de segurança da sua organização</p>
+                    
+                    <!-- Company/Project Name Input -->
+                    <div class="max-w-md mx-auto mb-8">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa/Projeto</label>
+                        <input type="text" id="company-name" placeholder="Digite o nome da empresa ou projeto" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <!-- Assessment Cards -->
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Bradley Curve Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group assessment-card" data-methodology="bradley">
+                        <div class="bg-gradient-to-r from-red-500 to-green-500 h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" class="text-blue-600">
+                                        <defs>
+                                            <linearGradient id="bradleyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#dc2626" />
+                                                <stop offset="33%" stop-color="#ea580c" />
+                                                <stop offset="66%" stop-color="#ca8a04" />
+                                                <stop offset="100%" stop-color="#16a34a" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M 4 24 Q 8 16 16 12 Q 24 8 28 4" stroke="url(#bradleyGradient)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                        <path d="M 26 6 L 28 4 L 26 2" stroke="url(#bradleyGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                        <polygon points="16,2 20,8 16,14 12,8" fill="currentColor" opacity="0.3"/>
+                                        <circle cx="6" cy="22" r="1.5" fill="#dc2626"/>
+                                        <circle cx="12" cy="16" r="1.5" fill="#ea580c"/>
+                                        <circle cx="20" cy="10" r="1.5" fill="#ca8a04"/>
+                                        <circle cx="26" cy="6" r="1.5" fill="#16a34a"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">DuPont Bradley Curve</h3>
+                                    <p class="text-sm text-gray-500">Est. 1995</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Avalie a jornada da sua organização desde a cultura reativa até a interdependente baseada no modelo clássico da DuPont.
+                            </p>
+                            <div class="text-xs text-gray-500 mb-4">
+                                <span>Reativo → Dependente → Independente → Interdependente</span>
+                            </div>
+                            <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium group-hover:bg-blue-700 transition-colors">
+                                Iniciar Avaliação
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hearts and Minds Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group assessment-card" data-methodology="hearts">
+                        <div class="bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 to-green-500 h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" class="text-red-600">
+                                        <defs>
+                                            <linearGradient id="heartsGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                                                <stop offset="0%" stop-color="#dc2626" />
+                                                <stop offset="33%" stop-color="#ea580c" />
+                                                <stop offset="66%" stop-color="#ca8a04" />
+                                                <stop offset="100%" stop-color="#16a34a" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M16,28 C16,28 5,19 5,12 C5,8 8,5 12,5 C14,5 16,7 16,7 C16,7 18,5 20,5 C24,5 27,8 27,12 C27,19 16,28 16,28 Z" 
+                                              fill="currentColor" opacity="0.7"/>
+                                        <path d="M16,4 C20,4 23,7 23,11 C23,12 22,13 21,13 C22,14 22,15 21,16 C22,17 22,18 21,19 C20,20 18,20 16,20 C14,20 12,20 11,19 C10,18 10,17 11,16 C10,15 10,14 11,13 C10,13 9,12 9,11 C9,7 12,4 16,4 Z" 
+                                              fill="url(#heartsGradient)" opacity="0.8"/>
+                                        <rect x="2" y="26" width="6" height="1" fill="currentColor" opacity="0.5"/>
+                                        <rect x="4" y="22" width="6" height="1" fill="currentColor" opacity="0.6"/>
+                                        <rect x="6" y="18" width="6" height="1" fill="currentColor" opacity="0.7"/>
+                                        <rect x="8" y="14" width="6" height="1" fill="currentColor" opacity="0.8"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Hearts and Minds</h3>
+                                    <p class="text-sm text-gray-500">Shell/Energy Institute</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Avalie a cultura de segurança através do modelo Hearts and Minds, focando nas atitudes e motivações por trás dos comportamentos.
+                            </p>
+                            <div class="text-xs text-gray-500 mb-4">
+                                <span>Reativo → Calculativo → Proativo → Generativo</span>
+                            </div>
+                            <button class="w-full bg-red-600 text-white py-3 rounded-lg font-medium group-hover:bg-red-700 transition-colors">
+                                Iniciar Avaliação
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Maturity Model Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group assessment-card" data-methodology="maturity">
+                        <div class="bg-gradient-to-r from-gray-400 to-green-600 h-2"></div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" class="text-green-600">
+                                        <rect x="6" y="24" width="20" height="2" fill="#6b7280"/>
+                                        <rect x="8" y="20" width="16" height="2" fill="#f97316"/>
+                                        <rect x="10" y="16" width="12" height="2" fill="#eab308"/>
+                                        <rect x="12" y="12" width="8" height="2" fill="#3b82f6"/>
+                                        <rect x="14" y="8" width="4" height="2" fill="#16a34a"/>
+                                        <rect x="4" y="6" width="2" height="20" fill="currentColor" opacity="0.3"/>
+                                        <rect x="26" y="6" width="2" height="20" fill="currentColor" opacity="0.3"/>
+                                        <polygon points="16,2 18,6 14,6" fill="currentColor"/>
+                                        <circle cx="16" cy="4" r="2" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <circle cx="7" cy="25" r="1" fill="white"/>
+                                        <circle cx="9" cy="21" r="1" fill="white"/>
+                                        <circle cx="11" cy="17" r="1" fill="white"/>
+                                        <circle cx="13" cy="13" r="1" fill="white"/>
+                                        <circle cx="15" cy="9" r="1" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Modelo de Maturidade</h3>
+                                    <p class="text-sm text-gray-500">Hudson-Parker</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Avaliação abrangente da maturidade da cultura de segurança através de múltiplas dimensões organizacionais e capacidades.
+                            </p>
+                            <div class="text-xs text-gray-500 mb-4">
+                                <span>Patológico → Emergente → Desenvolvendo → Gerenciando → Melhorando</span>
+                            </div>
+                            <button class="w-full bg-green-600 text-white py-3 rounded-lg font-medium group-hover:bg-green-700 transition-colors">
+                                Iniciar Avaliação
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Sobre Estas Metodologias</h2>
+                    <div class="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="flex items-center mb-2">
+                                <h4 class="font-semibold text-gray-800">DuPont Bradley Curve</h4>
+                            </div>
+                            <p class="mb-2"><strong>Origem:</strong> Desenvolvida por Berlin Bradley (DuPont) em 1995</p>
+                            <p><strong>Foco:</strong> Progressão da conformidade reativa para cultura de segurança interdependente proativa.</p>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <div class="flex items-center mb-2">
+                                <h4 class="font-semibold text-gray-800">Hearts and Minds</h4>
+                            </div>
+                            <p class="mb-2"><strong>Origem:</strong> Shell/Energy Institute</p>
+                            <p><strong>Foco:</strong> Compreender as atitudes e motivações subjacentes que impulsionam comportamentos de segurança.</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="flex items-center mb-2">
+                                <h4 class="font-semibold text-gray-800">Modelo de Maturidade</h4>
+                            </div>
+                            <p class="mb-2"><strong>Origem:</strong> Hudson-Parker</p>
+                            <p><strong>Foco:</strong> Avaliação abrangente da maturidade através de múltiplas dimensões organizacionais.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historical Results -->
+                <div id="historical-results" class="mt-8 bg-white rounded-xl shadow-lg p-8" style="display: none;">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Histórico de Avaliações</h2>
+                    <div id="history-content"></div>
+                </div>
+            </div>
+
+            <!-- Assessment Screen -->
+            <div id="assessment-screen" style="display: none;">
+                <div class="flex items-center gap-4 mb-6">
+                    <button id="back-btn" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.41 16.58L10.83 12l4.58-4.58L14 6l-6 6 6 6z"/>
+                        </svg>
+                        Voltar ao Menu
+                    </button>
+                    <h2 id="assessment-title" class="text-2xl font-bold"></h2>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium">Progresso</span>
+                        <span id="progress-text" class="text-sm text-gray-600">0/10</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Questions Container -->
+                <div id="questions-container"></div>
+
+                <!-- Results Container -->
+                <div id="results-container" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Application State
+        let currentMethodology = '';
+        let currentAnswers = {};
+        let companyName = '';
+        let assessments = JSON.parse(localStorage.getItem('ehsAssessments') || '[]');
+
+        // Question Sets
+        const questionSets = {
+            bradley: [
+                { id: 1, text: "A liderança demonstra ativamente a liderança de segurança através de ações visíveis", category: "leadership" },
+                { id: 2, text: "Os funcionários seguem as regras de segurança porque querem, não apenas porque têm que seguir", category: "motivation" },
+                { id: 3, text: "Incidentes de segurança são relatados sem medo de culpa ou punição", category: "culture" },
+                { id: 4, text: "As equipes identificam e abordam proativamente os riscos de segurança juntas", category: "teamwork" },
+                { id: 5, text: "Os procedimentos de segurança são regularmente revisados e melhorados com base no feedback dos funcionários", category: "improvement" },
+                { id: 6, text: "Os funcionários se sentem empoderados para parar o trabalho quando veem condições inseguras", category: "empowerment" },
+                { id: 7, text: "O desempenho de segurança é medido além das taxas de lesões", category: "metrics" },
+                { id: 8, text: "Há comunicação aberta sobre preocupações de segurança em todos os níveis", category: "communication" },
+                { id: 9, text: "Os funcionários cuidam ativamente da segurança uns dos outros", category: "care" },
+                { id: 10, text: "A segurança está integrada em todas as decisões e processos de negócios", category: "integration" }
+            ],
+            hearts: [
+                { id: 1, text: "As pessoas veem as regras de segurança como obstáculos burocráticos para realizar o trabalho", category: "reactive" },
+                { id: 2, text: "A segurança é impulsionada principalmente pela conformidade e evitação de penalidades", category: "reactive" },
+                { id: 3, text: "Os funcionários calculam riscos e benefícios antes de seguir procedimentos de segurança", category: "calculative" },
+                { id: 4, text: "As decisões de segurança são baseadas em análise de custo-benefício", category: "calculative" },
+                { id: 5, text: "As pessoas seguem regras de segurança porque acreditam que é a coisa certa a fazer", category: "proactive" },
+                { id: 6, text: "Os valores de segurança são compartilhados e praticados consistentemente em toda a organização", category: "proactive" },
+                { id: 7, text: "A segurança é 'simplesmente como fazemos negócios' - faz parte do nosso DNA", category: "generative" },
+                { id: 8, text: "A organização busca continuamente novas maneiras de melhorar a segurança", category: "generative" },
+                { id: 9, text: "O pensamento de segurança é aplicado a todos os aspectos do negócio", category: "generative" },
+                { id: 10, text: "As pessoas sentem responsabilidade pessoal pela segurança organizacional geral", category: "generative" }
+            ],
+            maturity: [
+                { id: 1, text: "A liderança fornece recursos adequados para programas de segurança", category: "leadership" },
+                { id: 2, text: "Há papéis e responsabilidades de segurança claros em todos os níveis", category: "organization" },
+                { id: 3, text: "O treinamento de segurança é abrangente e regularmente atualizado", category: "competence" },
+                { id: 4, text: "As avaliações de risco são completas e regularmente revisadas", category: "risk" },
+                { id: 5, text: "Há comunicação de segurança bidirecional eficaz", category: "communication" },
+                { id: 6, text: "O desempenho de segurança é regularmente monitorado e analisado", category: "monitoring" },
+                { id: 7, text: "As lições aprendidas com incidentes são efetivamente compartilhadas", category: "learning" },
+                { id: 8, text: "Os sistemas de gestão de segurança são bem integrados", category: "systems" },
+                { id: 9, text: "Contratados e fornecedores atendem aos nossos padrões de segurança", category: "partnerships" },
+                { id: 10, text: "A avaliação da cultura de segurança é conduzida regularmente", category: "assessment" }
+            ]
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHistoricalResults();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Assessment card clicks
+            document.querySelectorAll('.assessment-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const methodology = this.getAttribute('data-methodology');
+                    const companyNameInput = document.getElementById('company-name').value.trim();
+                    
+                    if (!companyNameInput) {
+                        alert('Por favor, insira o nome da empresa ou projeto antes de continuar.');
+                        document.getElementById('company-name').focus();
+                        return;
+                    }
+                    
+                    companyName = companyNameInput;
+                    startAssessment(methodology);
+                });
+            });
+
+            // Back button
+            document.getElementById('back-btn').addEventListener('click', function() {
+                showHomeScreen();
+            });
+        }
+
+        function startAssessment(methodology) {
+            currentMethodology = methodology;
+            currentAnswers = {};
+            
+            const titles = {
+                bradley: 'Avaliação DuPont Bradley Curve',
+                hearts: 'Avaliação Hearts and Minds',
+                maturity: 'Avaliação Modelo de Maturidade'
+            };
+            
+            document.getElementById('assessment-title').textContent = titles[methodology];
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('assessment-screen').style.display = 'block';
+            
+            renderQuestions();
+        }
+
+        function renderQuestions() {
+            const questions = questionSets[currentMethodology];
+            const container = document.getElementById('questions-container');
+            const resultsContainer = document.getElementById('results-container');
+            
+            container.innerHTML = '';
+            resultsContainer.style.display = 'none';
+            container.style.display = 'block';
+            
+            updateProgress();
+            
+            questions.forEach(question => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'bg-white p-6 rounded-lg shadow-sm border mb-4';
+                questionDiv.innerHTML = `
+                    <p class="text-lg mb-4">${question.text}</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <button class="answer-btn" data-question="${question.id}" data-answer="yes">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            <span class="text-sm">Sim</span>
+                        </button>
+                        <button class="answer-btn" data-question="${question.id}" data-answer="partial">
+                            <div class="w-4 h-4 border-2 border-current rounded-full flex items-center justify-center">
+                                <div class="w-2 h-2 bg-current rounded-full"></div>
+                            </div>
+                            <span class="text-sm">Parcial</span>
+                        </button>
+                        <button class="answer-btn" data-question="${question.id}" data-answer="no">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.42 1.42L10.59 13.42 4.29 19.72l1.42 1.42L12 15.83l6.29 6.29 1.42-1.42L13.41 14.41l6.3-6.3z"/>
+                            </svg>
+                            <span class="text-sm">Não</span>
+                        </button>
+                        <button class="answer-btn" data-question="${question.id}" data-answer="na">
+                            <div class="w-4 h-4 border-2 border-current rounded-full flex items-center justify-center">
+                                <div class="w-1 h-1 bg-current rounded-full"></div>
+                            </div>
+                            <span class="text-sm">N/A</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+            
+            // Add event listeners to answer buttons
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.className = 'answer-btn flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200';
+                btn.addEventListener('click', function() {
+                    const questionId = this.getAttribute('data-question');
+                    const answer = this.getAttribute('data-answer');
+                    handleAnswer(questionId, answer);
+                });
+            });
+        }
+
+        function handleAnswer(questionId, answer) {
+            currentAnswers[questionId] = answer;
+            
+            // Update button styles
+            const questionButtons = document.querySelectorAll(`[data-question="${questionId}"]`);
+            questionButtons.forEach(btn => {
+                if (btn.getAttribute('data-answer') === answer) {
+                    const colors = {
+                        yes: 'bg-green-500 text-white shadow-lg',
+                        partial: 'bg-yellow-500 text-white shadow-lg',
+                        no: 'bg-red-500 text-white shadow-lg',
+                        na: 'bg-gray-500 text-white shadow-lg'
+                    };
+                    btn.className = 'answer-btn flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ' + colors[answer];
+                } else {
+                    btn.className = 'answer-btn flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200';
+                }
+            });
+            
+            updateProgress();
+            
+            // Check if all questions answered
+            const totalQuestions = questionSets[currentMethodology].length;
+            if (Object.keys(currentAnswers).length === totalQuestions) {
+                setTimeout(() => showResults(), 500);
+            }
+        }
+
+        function updateProgress() {
+            const totalQuestions = questionSets[currentMethodology].length;
+            const answeredCount = Object.keys(currentAnswers).length;
+            const percentage = (answeredCount / totalQuestions) * 100;
+            
+            document.getElementById('progress-text').textContent = `${answeredCount}/${totalQuestions}`;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+        }
+
+        function showResults() {
+            document.getElementById('questions-container').style.display = 'none';
+            document.getElementById('results-container').style.display = 'block';
+            
+            const resultsHTML = generateResults();
+            document.getElementById('results-container').innerHTML = resultsHTML;
+            
+            // Save results
+            saveAssessment();
+        }
+
+        function generateResults() {
+            if (currentMethodology === 'bradley') {
+                return generateBradleyResults();
+            } else if (currentMethodology === 'hearts') {
+                return generateHeartsResults();
+            } else if (currentMethodology === 'maturity') {
+                return generateMaturityResults();
+            }
+        }
+
+        function calculateBradleyScore() {
+            let totalScore = 0;
+            let validAnswers = 0;
+            
+            Object.values(currentAnswers).forEach(answer => {
+                if (answer !== 'na') {
+                    validAnswers++;
+                    if (answer === 'yes') totalScore += 100;
+                    else if (answer === 'partial') totalScore += 50;
+                }
+            });
+            
+            return validAnswers > 0 ? totalScore / validAnswers : 0;
+        }
+
+        function getBradleyLevel(score) {
+            if (score >= 80) return { level: 'Interdependente', color: 'bg-green-500', stage: 4 };
+            if (score >= 60) return { level: 'Independente', color: 'bg-yellow-500', stage: 3 };
+            if (score >= 40) return { level: 'Dependente', color: 'bg-orange-500', stage: 2 };
+            return { level: 'Reativo', color: 'bg-red-500', stage: 1 };
+        }
+
+        function generateBradleyResults() {
+            const score = calculateBradleyScore();
+            const level = getBradleyLevel(score);
+            const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
+            
+            return `
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800 bg-yellow-400 py-2">DuPont Bradley Curve</h3>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-xl">
+                        <!-- Bradley Curve Visual -->
+                        <div class="relative bg-gray-50 p-6 rounded-lg mb-8">
+                            <!-- Injury Rate Y-axis -->
+                            <div class="absolute left-2 top-1/2 transform -rotate-90 origin-left text-sm font-bold text-red-600">
+                                TAXA DE LESÕES
+                            </div>
+                            
+                            <!-- Arrow shape container -->
+                            <div class="relative ml-8">
+                                <div class="flex items-stretch h-48">
+                                    <!-- Reactive Section -->
+                                    <div class="relative flex-1 ${level.stage === 1 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
+                                        <div class="bg-red-600 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-1">
+                                            <div class="text-center">
+                                                <div class="bg-white text-red-600 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
+                                                    INSTINTOS NATURAIS
+                                                </div>
+                                                <div class="text-sm font-bold mb-1">Reativo</div>
+                                                <div class="text-xs leading-tight">
+                                                    • Pessoas feridas por comportamento<br/>
+                                                    • Segurança é prioridade<br/>
+                                                    • Foco em taxas de lesões<br/>
+                                                    • Baseado em conformidade<br/>
+                                                    • Programas reativos
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-xs italic">
+                                                "Sigo regras porque tenho que seguir"
+                                            </div>
+                                        </div>
+                                        ${level.stage === 1 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
+                                    </div>
+
+                                    <!-- Dependent Section -->
+                                    <div class="relative flex-1 ${level.stage === 2 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
+                                        <div class="bg-orange-500 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-2">
+                                            <div class="text-center">
+                                                <div class="bg-white text-orange-500 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
+                                                    SUPERVISÃO
+                                                </div>
+                                                <div class="text-sm font-bold mb-1">Dependente</div>
+                                                <div class="text-xs leading-tight">
+                                                    • Engajamento do supervisor<br/>
+                                                    • Regras e procedimentos<br/>
+                                                    • Programas de treinamento<br/>
+                                                    • Modificação comportamental<br/>
+                                                    • Sistemas de medição
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-xs italic">
+                                                "Sigo regras porque tenho que seguir"
+                                            </div>
+                                        </div>
+                                        ${level.stage === 2 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
+                                    </div>
+
+                                    <!-- Independent Section -->
+                                    <div class="relative flex-1 ${level.stage === 3 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
+                                        <div class="bg-yellow-600 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-3">
+                                            <div class="text-center">
+                                                <div class="bg-white text-yellow-600 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
+                                                    PRÓPRIO
+                                                </div>
+                                                <div class="text-sm font-bold mb-1">Independente</div>
+                                                <div class="text-xs leading-tight">
+                                                    • Responsabilidade pessoal<br/>
+                                                    • Comportamento auto-dirigido<br/>
+                                                    • Comprometimento individual<br/>
+                                                    • Motivação intrínseca<br/>
+                                                    • Propriedade pessoal
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-xs italic">
+                                                "Sigo regras porque quero seguir"
+                                            </div>
+                                        </div>
+                                        ${level.stage === 3 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
+                                    </div>
+
+                                    <!-- Interdependent Section -->
+                                    <div class="relative flex-1 ${level.stage === 4 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
+                                        <div class="bg-green-600 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-4">
+                                            <div class="text-center">
+                                                <div class="bg-white text-green-600 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
+                                                    EQUIPES
+                                                </div>
+                                                <div class="text-sm font-bold mb-1">Interdependente</div>
+                                                <div class="text-xs leading-tight">
+                                                    • Responsabilidade da equipe<br/>
+                                                    • Cuidado com outros<br/>
+                                                    • Comprometimento coletivo<br/>
+                                                    • Responsabilização mútua<br/>
+                                                    • Comportamentos de ajuda
+                                                </div>
+                                            </div>
+                                            <div class="text-center text-xs italic">
+                                                "Sigo regras porque quero seguir"
+                                            </div>
+                                        </div>
+                                        ${level.stage === 4 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
+                                    </div>
+                                </div>
+
+                                <!-- Motivation labels -->
+                                <div class="flex justify-between mt-4 text-center">
+                                    <div class="w-1/2 text-red-600">
+                                        <div class="font-bold text-sm">Motivação Externa</div>
+                                        <div class="font-semibold text-xs">Conformidade</div>
+                                        <div class="text-xs">Regras, Procedimentos, Protocolos</div>
+                                    </div>
+                                    <div class="w-1/2 text-blue-600">
+                                        <div class="font-bold text-sm">Motivação Interna</div>
+                                        <div class="font-semibold text-xs">Comprometimento</div>
+                                        <div class="text-xs">Auto Liderança, Modelo de Função,<br/>Influência e Engajamento</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Summary -->
+                        <div class="text-center mb-6">
+                            <div class="inline-block px-8 py-4 rounded-xl text-white font-bold text-xl ${level.color}">
+                                Nível ${level.level}
+                            </div>
+                            <p class="text-xl mt-3 text-gray-700">Pontuação da Avaliação: ${score.toFixed(1)}%</p>
+                            ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-3 text-gray-800">Recomendações de Desenvolvimento:</h4>
+                            ${getBradleyRecommendations(level.stage)}
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button onclick="showHomeScreen()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            Fazer Nova Avaliação
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getBradleyRecommendations(stage) {
+            const recommendations = {
+                1: '<div><p class="mb-2"><strong>Área de Foco:</strong> Construir sistemas fundamentais de segurança e comprometimento da gestão</p><p><strong>Ações Chave:</strong> Estabelecer políticas claras de segurança, melhorar treinamento de supervisores, implementar sistemas básicos de medição e garantir conformidade regulatória.</p></div>',
+                2: '<div><p class="mb-2"><strong>Área de Foco:</strong> Desenvolver gestão sistemática de segurança e engajamento dos funcionários</p><p><strong>Ações Chave:</strong> Aprimorar programas de treinamento, implementar iniciativas de segurança baseadas em comportamento, melhorar comunicações de segurança e fortalecer relacionamentos supervisor-funcionário.</p></div>',
+                3: '<div><p class="mb-2"><strong>Área de Foco:</strong> Fomentar responsabilidade pessoal e comportamentos de segurança auto-dirigidos</p><p><strong>Ações Chave:</strong> Desenvolver habilidades de liderança em segurança, encorajar propriedade dos funcionários, implementar auto-avaliações e promover motivação intrínseca para segurança.</p></div>',
+                4: '<div><p class="mb-2"><strong>Área de Foco:</strong> Manter excelência através de colaboração em equipe e melhoria contínua</p><p><strong>Ações Chave:</strong> Fomentar coaching de segurança entre pares, implementar iniciativas de segurança baseadas em equipe, compartilhar melhores práticas e impulsionar inovação em práticas de segurança.</p></div>'
+            };
+            return recommendations[stage];
+        }
+
+        function calculateHeartsScore() {
+            const categories = { reactive: 0, calculative: 0, proactive: 0, generative: 0 };
+            
+            questionSets.hearts.forEach(q => {
+                const answer = currentAnswers[q.id];
+                if (answer === 'yes') {
+                    categories[q.category] += 100;
+                } else if (answer === 'partial') {
+                    categories[q.category] += 50;
+                }
+            });
+            
+            return categories;
+        }
+
+        function getHeartsLevel() {
+            const scores = calculateHeartsScore();
+            const maxScore = Math.max(...Object.values(scores));
+            return Object.keys(scores).find(key => scores[key] === maxScore) || 'reactive';
+        }
+
+        function generateHeartsResults() {
+            const scores = calculateHeartsScore();
+            const dominantLevel = getHeartsLevel();
+            const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
+            
+            return `
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">Hearts and Minds Safety Culture</h3>
+                    
+                    <div class="bg-black p-8 rounded-xl shadow-xl text-white relative overflow-hidden">
+                        <!-- Background diagonal lines -->
+                        <div class="absolute inset-0 opacity-10">
+                            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <line x1="0" y1="100" x2="20" y2="0" stroke="white" stroke-width="0.5"/>
+                                <line x1="10" y1="100" x2="30" y2="0" stroke="white" stroke-width="0.5"/>
+                                <line x1="20" y1="100" x2="40" y2="0" stroke="white" stroke-width="0.5"/>
+                                <line x1="30" y1="100" x2="50" y2="0" stroke="white" stroke-width="0.5"/>
+                                <line x1="40" y1="100" x2="60" y2="0" stroke="white" stroke-width="0.5"/>
+                            </svg>
+                        </div>
+
+                        <!-- Main diagonal arrow -->
+                        <div class="absolute left-12 top-8 bottom-8 w-0.5 bg-white transform rotate-12 origin-bottom opacity-30"></div>
+                        
+                        <!-- Consciousness and Responsibility arrows -->
+                        <div class="absolute left-8 top-12 text-xs text-gray-300 transform -rotate-45 origin-center">
+                            <div class="whitespace-nowrap">
+                                <div>Aumento da</div>
+                                <div>consciência</div>
+                            </div>
+                        </div>
+                        <div class="absolute right-8 bottom-12 text-xs text-gray-300 transform rotate-45 origin-center">
+                            <div class="whitespace-nowrap">
+                                <div>Aumento da</div>
+                                <div>confiança e</div>
+                                <div>responsabilidade</div>
+                            </div>
+                        </div>
+
+                        <!-- Culture levels -->
+                        <div class="relative z-10 space-y-3 pt-4 pb-4">
+                            <!-- Generativo -->
+                            <div class="relative ${dominantLevel === 'generative' ? 'ring-4 ring-yellow-400' : ''}">
+                                <div class="bg-green-600 p-4 rounded-lg relative">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex-1">
+                                            <h4 class="text-lg font-bold text-white">GENERATIVO</h4>
+                                            <p class="text-sm text-green-100 italic">SMS é como fazemos negócios aqui</p>
+                                            <p class="text-xs text-green-100 mt-1">A gestão da segurança e saúde é uma parte integral de tudo que fazemos</p>
+                                        </div>
+                                        <div class="text-3xl font-bold text-white ml-4">${scores.generative}</div>
+                                    </div>
+                                    ${dominantLevel === 'generative' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
+                                </div>
+                            </div>
+
+                            <!-- Proativo -->
+                            <div class="relative ${dominantLevel === 'proactive' ? 'ring-4 ring-yellow-400' : ''}">
+                                <div class="bg-yellow-500 p-4 rounded-lg relative">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex-1">
+                                            <h4 class="text-lg font-bold text-black">PROATIVO</h4>
+                                            <p class="text-sm text-yellow-800 italic">A melhoria é conduzida por valores</p>
+                                            <p class="text-xs text-yellow-800 mt-1">Tentamos antecipar os problemas que iremos enfrentar</p>
+                                        </div>
+                                        <div class="text-3xl font-bold text-black ml-4">${scores.proactive}</div>
+                                    </div>
+                                    ${dominantLevel === 'proactive' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
+                                </div>
+                            </div>
+
+                            <!-- Calculativo -->
+                            <div class="relative ${dominantLevel === 'calculative' ? 'ring-4 ring-yellow-400' : ''}">
+                                <div class="bg-orange-500 p-4 rounded-lg relative">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex-1">
+                                            <h4 class="text-lg font-bold text-white">CALCULATIVO</h4>
+                                            <p class="text-sm text-orange-100 italic">Nós temos sistemas para gerenciar todos os perigos</p>
+                                            <p class="text-xs text-orange-100 mt-1">Nós temos sistemas para gerenciar todos os perigos que conseguimos pensar</p>
+                                        </div>
+                                        <div class="text-3xl font-bold text-white ml-4">${scores.calculative}</div>
+                                    </div>
+                                    ${dominantLevel === 'calculative' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
+                                </div>
+                            </div>
+
+                            <!-- Reativo -->
+                            <div class="relative ${dominantLevel === 'reactive' ? 'ring-4 ring-yellow-400' : ''}">
+                                <div class="bg-red-600 p-4 rounded-lg relative">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex-1">
+                                            <h4 class="text-lg font-bold text-white">REATIVO</h4>
+                                            <p class="text-sm text-red-100 italic">Quem está me vigiando?</p>
+                                            <p class="text-xs text-red-100 mt-1">Fazemos muito pouco até que ocorram acidentes, sendo então que tomamos medidas</p>
+                                        </div>
+                                        <div class="text-3xl font-bold text-white ml-4">${scores.reactive}</div>
+                                    </div>
+                                    ${dominantLevel === 'reactive' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pathological level indicator -->
+                        <div class="text-center mt-6 border-t border-gray-600 pt-4">
+                            <div class="text-gray-400 text-sm">
+                                <span class="font-bold">PATOLÓGICO</span><br/>
+                                <span class="text-xs">Quem se importa, desde que não sejamos pegos</span>
+                            </div>
+                        </div>
+
+                        <!-- Results summary -->
+                        <div class="mt-8 text-center relative z-10">
+                            <div class="inline-block px-8 py-4 rounded-xl font-bold text-xl bg-yellow-400 text-black">
+                                Cultura Dominante: ${dominantLevel.toUpperCase()}
+                            </div>
+                            ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-300"><p>* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</p></div>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-3 text-gray-800">Características da Cultura Atual:</h4>
+                            ${getHeartsRecommendations(dominantLevel)}
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button onclick="showHomeScreen()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            Fazer Nova Avaliação
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getHeartsRecommendations(level) {
+            const recommendations = {
+                reactive: '<div><p class="mb-2"><strong>Estágio Reativo:</strong> A segurança é impulsionada pela evitação de acidentes e conformidade regulatória.</p><p><strong>Próximos Passos:</strong> Desenvolver consciência sobre segurança, estabelecer sistemas básicos de gestão e construir comprometimento da liderança.</p></div>',
+                calculative: '<div><p class="mb-2"><strong>Estágio Calculativo:</strong> Decisões de segurança baseadas em análise de custo-benefício e sistemas estruturados.</p><p><strong>Próximos Passos:</strong> Trabalhar no desenvolvimento de motivação intrínseca para segurança e valores compartilhados.</p></div>',
+                proactive: '<div><p class="mb-2"><strong>Estágio Proativo:</strong> As pessoas acreditam em fazer a coisa certa por segurança, guiadas por valores.</p><p><strong>Próximos Passos:</strong> Continuar construindo sobre estes valores positivos e integrar segurança em todos os processos.</p></div>',
+                generative: '<div><p class="mb-2"><strong>Estágio Generativo:</strong> A segurança é integral à forma como vocês fazem negócios.</p><p><strong>Próximos Passos:</strong> Manter esta excelência e compartilhar aprendizados com outros na indústria.</p></div>'
+            };
+            return recommendations[level];
+        }
+
+        function calculateMaturityScore() {
+            let totalScore = 0;
+            let validAnswers = 0;
+            
+            Object.values(currentAnswers).forEach(answer => {
+                if (answer !== 'na') {
+                    validAnswers++;
+                    if (answer === 'yes') totalScore += 100;
+                    else if (answer === 'partial') totalScore += 50;
+                }
+            });
+            
+            return validAnswers > 0 ? totalScore / validAnswers : 0;
+        }
+
+        function getMaturityLevel(score) {
+            if (score >= 80) return { level: 'Melhorando Continuamente', color: 'bg-green-600' };
+            if (score >= 60) return { level: 'Gerenciando', color: 'bg-blue-500' };
+            if (score >= 40) return { level: 'Desenvolvendo', color: 'bg-yellow-500' };
+            if (score >= 20) return { level: 'Emergente', color: 'bg-orange-500' };
+            return { level: 'Patológico', color: 'bg-red-500' };
+        }
+
+        function generateMaturityResults() {
+            const score = calculateMaturityScore();
+            const level = getMaturityLevel(score);
+            const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
+            
+            return `
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-center mb-6">Resultados do Modelo de Maturidade de Cultura de Segurança</h3>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="text-center mb-4">
+                            <div class="inline-block px-6 py-3 rounded-full text-white font-bold ${level.color}">
+                                ${level.level}
+                            </div>
+                            <p class="text-lg mt-2">Pontuação de Maturidade: ${score.toFixed(1)}%</p>
+                            ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
+                        </div>
+                        
+                        <div class="w-full bg-gray-200 rounded-full h-4 mb-6">
+                            <div class="h-4 rounded-full ${level.color}" style="width: ${score}%"></div>
+                        </div>
+                        
+                        <div class="grid grid-cols-5 gap-2 text-xs text-center mb-6">
+                            <div class="bg-red-500 text-white p-2 rounded">Patológico</div>
+                            <div class="bg-orange-500 text-white p-2 rounded">Emergente</div>
+                            <div class="bg-yellow-500 text-white p-2 rounded">Desenvolvendo</div>
+                            <div class="bg-blue-500 text-white p-2 rounded">Gerenciando</div>
+                            <div class="bg-green-600 text-white p-2 rounded">Melhorando</div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h4 class="font-bold mb-2">Próximos Passos:</h4>
+                            ${getMaturityRecommendations(score)}
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button onclick="showHomeScreen()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            Fazer Nova Avaliação
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getMaturityRecommendations(score) {
+            if (score < 20) return '<p>Estabelecer sistemas básicos de gestão de segurança e comprometimento da liderança. Focar em práticas fundamentais de segurança.</p>';
+            if (score >= 20 && score < 40) return '<p>Desenvolver abordagens sistemáticas para gestão de segurança. Melhorar sistemas de treinamento e comunicação.</p>';
+            if (score >= 40 && score < 60) return '<p>Aprimorar engajamento e participação dos funcionários. Implementar medidas de segurança mais proativas.</p>';
+            if (score >= 60 && score < 80) return '<p>Focar na integração e consistência em todas as operações. Desenvolver capacidades avançadas de liderança em segurança.</p>';
+            return '<p>Manter excelência através de inovação e aprendizagem contínuas. Compartilhar melhores práticas com pares da indústria.</p>';
+        }
+
+        function saveAssessment() {
+            const assessment = {
+                id: Date.now(),
+                company: companyName,
+                methodology: currentMethodology,
+                date: new Date().toLocaleDateString('pt-BR'),
+                answers: {...currentAnswers},
+                score: currentMethodology === 'bradley' ? calculateBradleyScore() : 
+                       currentMethodology === 'maturity' ? calculateMaturityScore() : null,
+                level: currentMethodology === 'bradley' ? getBradleyLevel(calculateBradleyScore()).level :
+                       currentMethodology === 'hearts' ? getHeartsLevel() :
+                       getMaturityLevel(calculateMaturityScore()).level
+            };
+            
+            assessments.push(assessment);
+            localStorage.setItem('ehsAssessments', JSON.stringify(assessments));
+            loadHistoricalResults();
+        }
+
+        function loadHistoricalResults() {
+            const container = document.getElementById('historical-results');
+            const content = document.getElementById('history-content');
+            
+            if (assessments.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'block';
+            
+            // Group assessments by company and methodology
+            const grouped = {};
+            assessments.forEach(assessment => {
+                const key = `${assessment.company}-${assessment.methodology}`;
+                if (!grouped[key]) {
+                    grouped[key] = [];
+                }
+                grouped[key].push(assessment);
+            });
+            
+            let historyHTML = '';
+            
+            Object.keys(grouped).forEach(key => {
+                const [company, methodology] = key.split('-');
+                const companyAssessments = grouped[key].sort((a, b) => new Date(a.date.split('/').reverse().join('-')) - new Date(b.date.split('/').reverse().join('-')));
+                
+                const methodologyNames = {
+                    bradley: 'DuPont Bradley Curve',
+                    hearts: 'Hearts and Minds',
+                    maturity: 'Modelo de Maturidade'
+                };
+                
+                historyHTML += `
+                    <div class="mb-6 p-4 border rounded-lg">
+                        <h4 class="font-bold text-lg mb-2">${company} - ${methodologyNames[methodology]}</h4>
+                        <div class="space-y-2">
+                `;
+                
+                companyAssessments.forEach((assessment, index) => {
+                    const prevAssessment = index > 0 ? companyAssessments[index - 1] : null;
+                    let trend = '';
+                    
+                    if (prevAssessment && assessment.score !== null && prevAssessment.score !== null) {
+                        const difference = assessment.score - prevAssessment.score;
+                        if (difference > 0) {
+                            trend = `<span class="text-green-600">↑ +${difference.toFixed(1)}%</span>`;
+                        } else if (difference < 0) {
+                            trend = `<span class="text-red-600">↓ ${difference.toFixed(1)}%</span>`;
+                        } else {
+                            trend = `<span class="text-gray-600">→ 0%</span>`;
+                        }
+                    }
+                    
+                    historyHTML += `
+                        <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                            <div>
+                                <span class="font-medium">${assessment.date}</span>
+                                <span class="ml-2 text-gray-600">${assessment.level}</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                ${assessment.score !== null ? `<span>${assessment.score.toFixed(1)}%</span>` : ''}
+                                ${trend}
+                                <button onclick="deleteAssessment(${assessment.id})" class="text-red-500 hover:text-red-700 ml-2">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                historyHTML += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            content.innerHTML = historyHTML;
+        }
+
+        function deleteAssessment(id) {
+            if (confirm('Tem certeza que deseja excluir esta avaliação?')) {
+                assessments = assessments.filter(assessment => assessment.id !== id);
+                localStorage.setItem('ehsAssessments', JSON.stringify(assessments));
+                loadHistoricalResults();
+            }
+        }
+
+        function showHomeScreen() {
+            document.getElementById('assessment-screen').style.display = 'none';
+            document.getElementById('home-screen').style.display = 'block';
+            currentMethodology = '';
+            currentAnswers = {};
+        }
+
+        // Export functionality
+        function exportResults() {
+            if (assessments.length === 0) {
+                alert('Não há dados para exportar.');
+                return;
+            }
+            
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Empresa,Metodologia,Data,Nível,Pontuação\n";
+            
+            assessments.forEach(assessment => {
+                const row = [
+                    assessment.company,
+                    assessment.methodology,
+                    assessment.date,
+                    assessment.level,
+                    assessment.score !== null ? assessment.score.toFixed(1) : 'N/A'
+                ].join(',');
+                csvContent += row + "\n";
+            });
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "avaliacoes_cultura_seguranca.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Add export button to historical results
+        function addExportButton() {
+            const container = document.getElementById('historical-results');
+            if (container && assessments.length > 0) {
+                const exportBtn = document.createElement('button');
+                exportBtn.className = 'bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors mb-4';
+                exportBtn.textContent = 'Exportar Dados (CSV)';
+                exportBtn.onclick = exportResults;
+                
+                const content = document.getElementById('history-content');
+                if (!content.querySelector('button')) {
+                    content.insertBefore(exportBtn, content.firstChild);
+                }
+            }
+        }
+
+        // Update loadHistoricalResults to include export button
+        const originalLoadHistoricalResults = loadHistoricalResults;
+        loadHistoricalResults = function() {
+            originalLoadHistoricalResults();
+            setTimeout(addExportButton, 100);
+        };
+    </script>
+</body>
+</html> 
