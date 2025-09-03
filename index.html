@@ -391,6 +391,9 @@
             const level = getBradleyLevel(score);
             const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
             
+            // Link para a imagem SVG da curva de Bradley original, hospedada para fácil acesso
+            const bradleySvgUrl = 'https://raw.githubusercontent.com/IgorFreitasD/EHS-Culture-Assessment/main/bradley_curve_original.svg';
+
             return `
                 <div class="space-y-8">
                     <div class="bg-white p-8 rounded-xl shadow-xl">
@@ -407,54 +410,8 @@
                             ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
                         </div>
 
-                        <div class="relative max-w-4xl mx-auto mt-12 mb-8">
-                            <svg width="100%" height="400" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-                                <style>
-                                    .axis-label { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: bold; fill: #4a5568; }
-                                    .stage-title { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: bold; text-anchor: middle; }
-                                    .stage-subtitle { font-family: 'Inter', sans-serif; font-size: 28px; text-anchor: middle; }
-                                    .stage-text { font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.2; }
-                                    .highlight { filter: drop-shadow(0px 0px 8px rgba(255, 255, 0, 0.8)); }
-                                </style>
-                                
-                                <line x1="100" y1="100" x2="100" y2="700" stroke="#4a5568" stroke-width="4" />
-                                <text x="50" y="400" transform="rotate(-90, 50, 400)" class="axis-label">Taxa de Lesões</text>
-                                
-                                <path d="M100 680 C 300 350, 600 200, 1100 120" stroke="#3730a3" stroke-width="8" fill="none" />
-                                
-                                <circle id="point-reactive" cx="120" cy="650" r="15" fill="#ef4444" />
-                                <circle id="point-dependent" cx="300" cy="350" r="15" fill="#f97316" />
-                                <circle id="point-independent" cx="600" cy="200" r="15" fill="#eab308" />
-                                <circle id="point-interdependent" cx="1100" cy="120" r="15" fill="#22c55e" />
-
-                                <g id="stage-reactive" class="${level.stage === 1 ? 'highlight' : ''}">
-                                    <rect x="100" y="550" width="200" height="150" fill="#ef4444" rx="10" opacity="0.8" />
-                                    <text x="200" y="590" class="stage-title text-white">Reativo</text>
-                                    <text x="200" y="620" class="stage-subtitle text-white">Instintos Naturais</text>
-                                </g>
-                                <g id="stage-dependent" class="${level.stage === 2 ? 'highlight' : ''}">
-                                    <rect x="300" y="400" width="250" height="150" fill="#f97316" rx="10" opacity="0.8" />
-                                    <text x="425" y="440" class="stage-title text-white">Dependente</text>
-                                    <text x="425" y="470" class="stage-subtitle text-white">Supervisão</text>
-                                </g>
-                                <g id="stage-independent" class="${level.stage === 3 ? 'highlight' : ''}">
-                                    <rect x="550" y="250" width="250" height="150" fill="#eab308" rx="10" opacity="0.8" />
-                                    <text x="675" y="290" class="stage-title text-white">Independente</text>
-                                    <text x="675" y="320" class="stage-subtitle text-white">Próprio</text>
-                                </g>
-                                <g id="stage-interdependent" class="${level.stage === 4 ? 'highlight' : ''}">
-                                    <rect x="800" y="100" width="350" height="150" fill="#22c55e" rx="10" opacity="0.8" />
-                                    <text x="975" y="140" class="stage-title text-white">Interdependente</text>
-                                    <text x="975" y="170" class="stage-subtitle text-white">Equipes</text>
-                                </g>
-                                
-                                <circle cx="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" cy="${level.stage === 1 ? 500 : level.stage === 2 ? 350 : level.stage === 3 ? 200 : 50}" r="20" fill="yellow" stroke="black" stroke-width="3" />
-                                <text x="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" y="${level.stage === 1 ? 500 : level.stage === 2 ? 350 : level.stage === 3 ? 200 : 50}" text-anchor="middle" alignment-baseline="middle" font-weight="bold" font-size="28" fill="black">
-                                    <tspan x="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" dy="-20">Seu</tspan>
-                                    <tspan x="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" dy="30">Nível</tspan>
-                                </text>
-
-                            </svg>
+                        <div class="relative max-w-4xl mx-auto my-8">
+                            <img src="${bradleySvgUrl}" alt="Curva de Bradley Original" class="w-full h-auto">
                         </div>
                         
                         <div class="bg-gray-100 p-6 rounded-lg">
@@ -599,7 +556,7 @@
                 reactive: 'A cultura **Reativa** é caracterizada por uma abordagem reativa à segurança. Os próximos passos devem focar em estabelecer sistemas, como relatórios de incidentes e investigações formais, e em mudar a mentalidade de "culpa" para "aprendizado". O envolvimento da gestão é crucial para impulsionar a mudança.',
                 calculative: 'No estágio **Calculativo**, a segurança é vista como um sistema que pode ser gerenciado. O foco está na documentação e medição. Para evoluir, é preciso ir além dos números. Incentive a propriedade pessoal e o envolvimento emocional com a segurança, mostrando que a segurança é sobre cuidar de pessoas, não apenas sobre seguir processos.',
                 proactive: 'A cultura **Proativa** é um ótimo ponto de partida. As pessoas já agem com base em valores e crenças positivas. O próximo passo é transformar essa atitude individual em uma força coletiva. Promova a colaboração, o compartilhamento de melhores práticas e a liderança em segurança em todos os níveis da organização.',
-                generative: 'O estágio **Generativo** representa a excelência. A segurança já está no DNA da organização. O desafio é manter essa cultura vibrante. Isso envolve a busca contínua por inovação, o compartilhamento de conhecimento e a adaptação a novos riscos. A segurança é uma parte natural da tomada de decisões em todos os níveis.'
+                generative: 'O estágio **Generativo** representa a excelência. A segurança já está no DNA da organização. O desafio é manter essa cultura vibrante. Isso envolve a busca contínua por inovação, o uso de tecnologia para prevenção de riscos, e a adaptação a novos desafios.'
             };
             return recommendations[level];
         }
