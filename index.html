@@ -5,114 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação de Cultura de Segurança EHS</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .bradley-arrow-1 { clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%); }
-        .bradley-arrow-2 { clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%); }
-        .bradley-arrow-3 { clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%); }
-        .bradley-arrow-4 { clip-path: polygon(10% 0, 100% 0, 90% 50%, 100% 100%, 10% 100%, 0 50%); }
-        
-        .hearts-diagonal { 
-            background: linear-gradient(45deg, transparent 48%, white 49%, white 51%, transparent 52%);
-            opacity: 0.1;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-    <div class="max-w-6xl mx-auto p-4">
-        <!-- Main Container -->
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100 text-gray-800">
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
         <div id="app-container">
-            <!-- Home Screen -->
             <div id="home-screen">
-                <div class="text-center mb-12">
+                <header class="text-center mb-12">
                     <div class="flex justify-center mb-4">
-                        <div class="h-16 w-16 text-blue-600 flex items-center justify-center">
-                            <svg width="64" height="64" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2L13.09 8.26L21.36 12L13.09 15.74L12 22L10.91 15.74L2.64 12L10.91 8.26L12 2Z"/>
+                        <div class="h-16 w-16 text-emerald-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
+                                <path d="M20 13c0 5-2 9-8 11s-8-6-8-11a5.613 5.613 0 0 1 5-5.5 8.35 8.35 0 0 0 6 0c3 0 5 1.5 5 5.5Z"/>
+                                <path d="m9 12 2 2 4-4"/>
                             </svg>
                         </div>
                     </div>
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Avaliação de Cultura de Segurança EHS</h1>
-                    <p class="text-lg text-gray-600 mb-8">Escolha sua metodologia de avaliação preferida para avaliar a maturidade da cultura de segurança da sua organização</p>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Avaliação de Cultura de Segurança EHS</h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                        Escolha uma metodologia para avaliar a maturidade da cultura de segurança da sua organização e comece a jornada para a excelência em EHS (Meio Ambiente, Saúde e Segurança).
+                    </p>
                     
-                    <!-- Company/Project Name Input -->
                     <div class="max-w-md mx-auto mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa/Projeto</label>
+                        <label for="company-name" class="block text-sm font-medium text-gray-700 mb-2 text-left">Nome da Empresa/Projeto</label>
                         <input type="text" id="company-name" placeholder="Digite o nome da empresa ou projeto" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors">
                     </div>
-                </div>
+                </header>
 
-                <!-- Assessment Cards -->
-                <div class="grid md:grid-cols-3 gap-8 mb-12">
-                    <!-- Bradley Curve Card -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group assessment-card" data-methodology="bradley">
-                        <div class="bg-gradient-to-r from-red-500 to-green-500 h-2"></div>
+                <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group assessment-card" data-methodology="bradley">
+                        <div class="bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 to-green-500 h-2 rounded-t-xl"></div>
                         <div class="p-6">
                             <div class="flex items-center mb-4">
-                                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                    <svg width="32" height="32" viewBox="0 0 32 32" class="text-blue-600">
-                                        <defs>
-                                            <linearGradient id="bradleyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                <stop offset="0%" stop-color="#dc2626" />
-                                                <stop offset="33%" stop-color="#ea580c" />
-                                                <stop offset="66%" stop-color="#ca8a04" />
-                                                <stop offset="100%" stop-color="#16a34a" />
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M 4 24 Q 8 16 16 12 Q 24 8 28 4" stroke="url(#bradleyGradient)" stroke-width="3" fill="none" stroke-linecap="round"/>
-                                        <path d="M 26 6 L 28 4 L 26 2" stroke="url(#bradleyGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
-                                        <polygon points="16,2 20,8 16,14 12,8" fill="currentColor" opacity="0.3"/>
-                                        <circle cx="6" cy="22" r="1.5" fill="#dc2626"/>
-                                        <circle cx="12" cy="16" r="1.5" fill="#ea580c"/>
-                                        <circle cx="20" cy="10" r="1.5" fill="#ca8a04"/>
-                                        <circle cx="26" cy="6" r="1.5" fill="#16a34a"/>
+                                <div class="bg-emerald-100 p-3 rounded-full mr-4 text-emerald-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">DuPont Bradley Curve</h3>
+                                    <h3 class="text-xl font-bold text-gray-900">DuPont Bradley Curve</h3>
                                     <p class="text-sm text-gray-500">Est. 1995</p>
                                 </div>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Avalie a jornada da sua organização desde a cultura reativa até a interdependente baseada no modelo clássico da DuPont.
+                                Avalie a jornada da sua organização desde a cultura reativa até a interdependente, baseada no modelo clássico da DuPont.
                             </p>
                             <div class="text-xs text-gray-500 mb-4">
-                                <span>Reativo → Dependente → Independente → Interdependente</span>
+                                <span class="font-medium">Reativo → Dependente → Independente → Interdependente</span>
                             </div>
-                            <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium group-hover:bg-blue-700 transition-colors">
+                            <button class="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold group-hover:bg-emerald-700 transition-colors">
                                 Iniciar Avaliação
                             </button>
                         </div>
                     </div>
 
-                    <!-- Hearts and Minds Card -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group assessment-card" data-methodology="hearts">
-                        <div class="bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 to-green-500 h-2"></div>
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group assessment-card" data-methodology="hearts">
+                        <div class="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-2 rounded-t-xl"></div>
                         <div class="p-6">
                             <div class="flex items-center mb-4">
-                                <div class="bg-red-100 p-3 rounded-full mr-4">
-                                    <svg width="32" height="32" viewBox="0 0 32 32" class="text-red-600">
-                                        <defs>
-                                            <linearGradient id="heartsGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                                                <stop offset="0%" stop-color="#dc2626" />
-                                                <stop offset="33%" stop-color="#ea580c" />
-                                                <stop offset="66%" stop-color="#ca8a04" />
-                                                <stop offset="100%" stop-color="#16a34a" />
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M16,28 C16,28 5,19 5,12 C5,8 8,5 12,5 C14,5 16,7 16,7 C16,7 18,5 20,5 C24,5 27,8 27,12 C27,19 16,28 16,28 Z" 
-                                              fill="currentColor" opacity="0.7"/>
-                                        <path d="M16,4 C20,4 23,7 23,11 C23,12 22,13 21,13 C22,14 22,15 21,16 C22,17 22,18 21,19 C20,20 18,20 16,20 C14,20 12,20 11,19 C10,18 10,17 11,16 C10,15 10,14 11,13 C10,13 9,12 9,11 C9,7 12,4 16,4 Z" 
-                                              fill="url(#heartsGradient)" opacity="0.8"/>
-                                        <rect x="2" y="26" width="6" height="1" fill="currentColor" opacity="0.5"/>
-                                        <rect x="4" y="22" width="6" height="1" fill="currentColor" opacity="0.6"/>
-                                        <rect x="6" y="18" width="6" height="1" fill="currentColor" opacity="0.7"/>
-                                        <rect x="8" y="14" width="6" height="1" fill="currentColor" opacity="0.8"/>
+                                <div class="bg-rose-100 p-3 rounded-full mr-4 text-rose-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-handshake">
+                                        <path d="m19 14-6 6c-3.15 3.15-11 3.15-11-5V5l7-7-2.5 2.5a6.5 6.5 0 0 1 5 5-6.5 6.5 0 0 1 2.5 2.5Z"/>
+                                        <path d="m12 18 5 5 5-5c1.4-1.4 1.4-3.6 0-5l-5-5c-1.4-1.4-3.6-1.4-5 0l-5 5-5 5"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Hearts and Minds</h3>
+                                    <h3 class="text-xl font-bold text-gray-900">Hearts and Minds</h3>
                                     <p class="text-sm text-gray-500">Shell/Energy Institute</p>
                                 </div>
                             </div>
@@ -120,39 +85,26 @@
                                 Avalie a cultura de segurança através do modelo Hearts and Minds, focando nas atitudes e motivações por trás dos comportamentos.
                             </p>
                             <div class="text-xs text-gray-500 mb-4">
-                                <span>Reativo → Calculativo → Proativo → Generativo</span>
+                                <span class="font-medium">Reativo → Calculativo → Proativo → Generativo</span>
                             </div>
-                            <button class="w-full bg-red-600 text-white py-3 rounded-lg font-medium group-hover:bg-red-700 transition-colors">
+                            <button class="w-full bg-rose-600 text-white py-3 rounded-lg font-semibold group-hover:bg-rose-700 transition-colors">
                                 Iniciar Avaliação
                             </button>
                         </div>
                     </div>
 
-                    <!-- Maturity Model Card -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group assessment-card" data-methodology="maturity">
-                        <div class="bg-gradient-to-r from-gray-400 to-green-600 h-2"></div>
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group assessment-card" data-methodology="maturity">
+                        <div class="bg-gradient-to-r from-gray-400 to-emerald-600 h-2 rounded-t-xl"></div>
                         <div class="p-6">
                             <div class="flex items-center mb-4">
-                                <div class="bg-green-100 p-3 rounded-full mr-4">
-                                    <svg width="32" height="32" viewBox="0 0 32 32" class="text-green-600">
-                                        <rect x="6" y="24" width="20" height="2" fill="#6b7280"/>
-                                        <rect x="8" y="20" width="16" height="2" fill="#f97316"/>
-                                        <rect x="10" y="16" width="12" height="2" fill="#eab308"/>
-                                        <rect x="12" y="12" width="8" height="2" fill="#3b82f6"/>
-                                        <rect x="14" y="8" width="4" height="2" fill="#16a34a"/>
-                                        <rect x="4" y="6" width="2" height="20" fill="currentColor" opacity="0.3"/>
-                                        <rect x="26" y="6" width="2" height="20" fill="currentColor" opacity="0.3"/>
-                                        <polygon points="16,2 18,6 14,6" fill="currentColor"/>
-                                        <circle cx="16" cy="4" r="2" fill="none" stroke="currentColor" stroke-width="1"/>
-                                        <circle cx="7" cy="25" r="1" fill="white"/>
-                                        <circle cx="9" cy="21" r="1" fill="white"/>
-                                        <circle cx="11" cy="17" r="1" fill="white"/>
-                                        <circle cx="13" cy="13" r="1" fill="white"/>
-                                        <circle cx="15" cy="9" r="1" fill="white"/>
+                                <div class="bg-sky-100 p-3 rounded-full mr-4 text-sky-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                                        <polyline points="16 7 22 7 22 13"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Modelo de Maturidade</h3>
+                                    <h3 class="text-xl font-bold text-gray-900">Modelo de Maturidade</h3>
                                     <p class="text-sm text-gray-500">Hudson-Parker</p>
                                 </div>
                             </div>
@@ -160,83 +112,53 @@
                                 Avaliação abrangente da maturidade da cultura de segurança através de múltiplas dimensões organizacionais e capacidades.
                             </p>
                             <div class="text-xs text-gray-500 mb-4">
-                                <span>Patológico → Emergente → Desenvolvendo → Gerenciando → Melhorando</span>
+                                <span class="font-medium">Patológico → Emergente → Desenvolvendo → Gerenciando → Melhorando</span>
                             </div>
-                            <button class="w-full bg-green-600 text-white py-3 rounded-lg font-medium group-hover:bg-green-700 transition-colors">
+                            <button class="w-full bg-sky-600 text-white py-3 rounded-lg font-semibold group-hover:bg-sky-700 transition-colors">
                                 Iniciar Avaliação
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- About Section -->
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Sobre Estas Metodologias</h2>
-                    <div class="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
-                        <div class="border-l-4 border-blue-500 pl-4">
-                            <div class="flex items-center mb-2">
-                                <h4 class="font-semibold text-gray-800">DuPont Bradley Curve</h4>
-                            </div>
-                            <p class="mb-2"><strong>Origem:</strong> Desenvolvida por Berlin Bradley (DuPont) em 1995</p>
-                            <p><strong>Foco:</strong> Progressão da conformidade reativa para cultura de segurança interdependente proativa.</p>
-                        </div>
-                        <div class="border-l-4 border-red-500 pl-4">
-                            <div class="flex items-center mb-2">
-                                <h4 class="font-semibold text-gray-800">Hearts and Minds</h4>
-                            </div>
-                            <p class="mb-2"><strong>Origem:</strong> Shell/Energy Institute</p>
-                            <p><strong>Foco:</strong> Compreender as atitudes e motivações subjacentes que impulsionam comportamentos de segurança.</p>
-                        </div>
-                        <div class="border-l-4 border-green-500 pl-4">
-                            <div class="flex items-center mb-2">
-                                <h4 class="font-semibold text-gray-800">Modelo de Maturidade</h4>
-                            </div>
-                            <p class="mb-2"><strong>Origem:</strong> Hudson-Parker</p>
-                            <p><strong>Foco:</strong> Avaliação abrangente da maturidade através de múltiplas dimensões organizacionais.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Historical Results -->
                 <div id="historical-results" class="mt-8 bg-white rounded-xl shadow-lg p-8" style="display: none;">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Histórico de Avaliações</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Histórico de Avaliações</h2>
                     <div id="history-content"></div>
                 </div>
             </div>
 
-            <!-- Assessment Screen -->
             <div id="assessment-screen" style="display: none;">
                 <div class="flex items-center gap-4 mb-6">
-                    <button id="back-btn" class="flex items-center gap-2 text-blue-600 hover:text-blue-800">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M15.41 16.58L10.83 12l4.58-4.58L14 6l-6 6 6 6z"/>
+                    <button id="back-btn" class="flex items-center gap-2 text-emerald-600 hover:text-emerald-800 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
+                            <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
                         </svg>
-                        Voltar ao Menu
+                        <span class="font-medium">Voltar ao Menu</span>
                     </button>
-                    <h2 id="assessment-title" class="text-2xl font-bold"></h2>
+                    <h2 id="assessment-title" class="text-2xl md:text-3xl font-bold text-gray-900"></h2>
                 </div>
 
-                <!-- Progress Bar -->
                 <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
                     <div class="flex justify-between items-center">
-                        <span class="text-sm font-medium">Progresso</span>
+                        <span class="text-sm font-medium text-gray-700">Progresso</span>
                         <span id="progress-text" class="text-sm text-gray-600">0/10</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-                        <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        <div id="progress-bar" class="bg-emerald-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
                     </div>
                 </div>
 
-                <!-- Questions Container -->
                 <div id="questions-container"></div>
 
-                <!-- Results Container -->
                 <div id="results-container" style="display: none;"></div>
             </div>
         </div>
     </div>
 
     <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
         // Application State
         let currentMethodology = '';
         let currentAnswers = {};
@@ -283,14 +205,13 @@
             ]
         };
 
-        // Initialize App
+        // --- Core Functions ---
         document.addEventListener('DOMContentLoaded', function() {
             loadHistoricalResults();
             setupEventListeners();
         });
 
         function setupEventListeners() {
-            // Assessment card clicks
             document.querySelectorAll('.assessment-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const methodology = this.getAttribute('data-methodology');
@@ -307,7 +228,6 @@
                 });
             });
 
-            // Back button
             document.getElementById('back-btn').addEventListener('click', function() {
                 showHomeScreen();
             });
@@ -343,42 +263,41 @@
             
             questions.forEach(question => {
                 const questionDiv = document.createElement('div');
-                questionDiv.className = 'bg-white p-6 rounded-lg shadow-sm border mb-4';
+                questionDiv.className = 'bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-4';
                 questionDiv.innerHTML = `
-                    <p class="text-lg mb-4">${question.text}</p>
+                    <p class="text-lg md:text-xl font-medium mb-4 text-gray-800">${question.text}</p>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <button class="answer-btn" data-question="${question.id}" data-answer="yes">
-                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        <button class="answer-btn yes-btn" data-question="${question.id}" data-answer="yes">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                                <path d="M20 6 9 17l-5-5"/>
                             </svg>
-                            <span class="text-sm">Sim</span>
+                            <span>Sim</span>
                         </button>
-                        <button class="answer-btn" data-question="${question.id}" data-answer="partial">
-                            <div class="w-4 h-4 border-2 border-current rounded-full flex items-center justify-center">
-                                <div class="w-2 h-2 bg-current rounded-full"></div>
-                            </div>
-                            <span class="text-sm">Parcial</span>
-                        </button>
-                        <button class="answer-btn" data-question="${question.id}" data-answer="no">
-                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.42 1.42L10.59 13.42 4.29 19.72l1.42 1.42L12 15.83l6.29 6.29 1.42-1.42L13.41 14.41l6.3-6.3z"/>
+                        <button class="answer-btn partial-btn" data-question="${question.id}" data-answer="partial">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus">
+                                <path d="M5 12h14"/>
                             </svg>
-                            <span class="text-sm">Não</span>
+                            <span>Parcial</span>
                         </button>
-                        <button class="answer-btn" data-question="${question.id}" data-answer="na">
-                            <div class="w-4 h-4 border-2 border-current rounded-full flex items-center justify-center">
-                                <div class="w-1 h-1 bg-current rounded-full"></div>
-                            </div>
-                            <span class="text-sm">N/A</span>
+                        <button class="answer-btn no-btn" data-question="${question.id}" data-answer="no">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+                                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                            </svg>
+                            <span>Não</span>
+                        </button>
+                        <button class="answer-btn na-btn" data-question="${question.id}" data-answer="na">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban">
+                                <circle cx="12" cy="12" r="10"/><path d="m4.2 4.2 15.6 15.6"/>
+                            </svg>
+                            <span>N/A</span>
                         </button>
                     </div>
                 `;
                 container.appendChild(questionDiv);
             });
             
-            // Add event listeners to answer buttons
             document.querySelectorAll('.answer-btn').forEach(btn => {
-                btn.className = 'answer-btn flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200';
+                btn.className = 'answer-btn flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200';
                 btn.addEventListener('click', function() {
                     const questionId = this.getAttribute('data-question');
                     const answer = this.getAttribute('data-answer');
@@ -390,25 +309,26 @@
         function handleAnswer(questionId, answer) {
             currentAnswers[questionId] = answer;
             
-            // Update button styles
             const questionButtons = document.querySelectorAll(`[data-question="${questionId}"]`);
             questionButtons.forEach(btn => {
-                if (btn.getAttribute('data-answer') === answer) {
+                const btnAnswer = btn.getAttribute('data-answer');
+                btn.className = 'answer-btn flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all text-sm';
+                
+                if (btnAnswer === answer) {
                     const colors = {
-                        yes: 'bg-green-500 text-white shadow-lg',
+                        yes: 'bg-emerald-500 text-white shadow-lg',
                         partial: 'bg-yellow-500 text-white shadow-lg',
-                        no: 'bg-red-500 text-white shadow-lg',
-                        na: 'bg-gray-500 text-white shadow-lg'
+                        no: 'bg-rose-500 text-white shadow-lg',
+                        na: 'bg-slate-500 text-white shadow-lg'
                     };
-                    btn.className = 'answer-btn flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ' + colors[answer];
+                    btn.classList.add(...colors[answer].split(' '));
                 } else {
-                    btn.className = 'answer-btn flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200';
+                    btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200', 'border', 'border-gray-200');
                 }
             });
             
             updateProgress();
             
-            // Check if all questions answered
             const totalQuestions = questionSets[currentMethodology].length;
             if (Object.keys(currentAnswers).length === totalQuestions) {
                 setTimeout(() => showResults(), 500);
@@ -431,7 +351,6 @@
             const resultsHTML = generateResults();
             document.getElementById('results-container').innerHTML = resultsHTML;
             
-            // Save results
             saveAssessment();
         }
 
@@ -445,11 +364,11 @@
             }
         }
 
-        function calculateBradleyScore() {
+        function calculateScore(answers) {
             let totalScore = 0;
             let validAnswers = 0;
             
-            Object.values(currentAnswers).forEach(answer => {
+            Object.values(answers).forEach(answer => {
                 if (answer !== 'na') {
                     validAnswers++;
                     if (answer === 'yes') totalScore += 100;
@@ -461,194 +380,144 @@
         }
 
         function getBradleyLevel(score) {
-            if (score >= 80) return { level: 'Interdependente', color: 'bg-green-500', stage: 4 };
-            if (score >= 60) return { level: 'Independente', color: 'bg-yellow-500', stage: 3 };
-            if (score >= 40) return { level: 'Dependente', color: 'bg-orange-500', stage: 2 };
-            return { level: 'Reativo', color: 'bg-red-500', stage: 1 };
+            if (score >= 80) return { level: 'Interdependente', color: 'text-green-600', stage: 4 };
+            if (score >= 60) return { level: 'Independente', color: 'text-yellow-600', stage: 3 };
+            if (score >= 40) return { level: 'Dependente', color: 'text-orange-600', stage: 2 };
+            return { level: 'Reativo', color: 'text-red-600', stage: 1 };
         }
 
         function generateBradleyResults() {
-            const score = calculateBradleyScore();
+            const score = calculateScore(currentAnswers);
             const level = getBradleyLevel(score);
             const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
             
             return `
-                <div class="space-y-6">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800 bg-yellow-400 py-2">DuPont Bradley Curve</h3>
-                    
+                <div class="space-y-8">
                     <div class="bg-white p-8 rounded-xl shadow-xl">
-                        <!-- Bradley Curve Visual -->
-                        <div class="relative bg-gray-50 p-6 rounded-lg mb-8">
-                            <!-- Injury Rate Y-axis -->
-                            <div class="absolute left-2 top-1/2 transform -rotate-90 origin-left text-sm font-bold text-red-600">
-                                TAXA DE LESÕES
-                            </div>
-                            
-                            <!-- Arrow shape container -->
-                            <div class="relative ml-8">
-                                <div class="flex items-stretch h-48">
-                                    <!-- Reactive Section -->
-                                    <div class="relative flex-1 ${level.stage === 1 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
-                                        <div class="bg-red-600 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-1">
-                                            <div class="text-center">
-                                                <div class="bg-white text-red-600 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
-                                                    INSTINTOS NATURAIS
-                                                </div>
-                                                <div class="text-sm font-bold mb-1">Reativo</div>
-                                                <div class="text-xs leading-tight">
-                                                    • Pessoas feridas por comportamento<br/>
-                                                    • Segurança é prioridade<br/>
-                                                    • Foco em taxas de lesões<br/>
-                                                    • Baseado em conformidade<br/>
-                                                    • Programas reativos
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-xs italic">
-                                                "Sigo regras porque tenho que seguir"
-                                            </div>
-                                        </div>
-                                        ${level.stage === 1 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
-                                    </div>
-
-                                    <!-- Dependent Section -->
-                                    <div class="relative flex-1 ${level.stage === 2 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
-                                        <div class="bg-orange-500 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-2">
-                                            <div class="text-center">
-                                                <div class="bg-white text-orange-500 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
-                                                    SUPERVISÃO
-                                                </div>
-                                                <div class="text-sm font-bold mb-1">Dependente</div>
-                                                <div class="text-xs leading-tight">
-                                                    • Engajamento do supervisor<br/>
-                                                    • Regras e procedimentos<br/>
-                                                    • Programas de treinamento<br/>
-                                                    • Modificação comportamental<br/>
-                                                    • Sistemas de medição
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-xs italic">
-                                                "Sigo regras porque tenho que seguir"
-                                            </div>
-                                        </div>
-                                        ${level.stage === 2 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
-                                    </div>
-
-                                    <!-- Independent Section -->
-                                    <div class="relative flex-1 ${level.stage === 3 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
-                                        <div class="bg-yellow-600 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-3">
-                                            <div class="text-center">
-                                                <div class="bg-white text-yellow-600 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
-                                                    PRÓPRIO
-                                                </div>
-                                                <div class="text-sm font-bold mb-1">Independente</div>
-                                                <div class="text-xs leading-tight">
-                                                    • Responsabilidade pessoal<br/>
-                                                    • Comportamento auto-dirigido<br/>
-                                                    • Comprometimento individual<br/>
-                                                    • Motivação intrínseca<br/>
-                                                    • Propriedade pessoal
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-xs italic">
-                                                "Sigo regras porque quero seguir"
-                                            </div>
-                                        </div>
-                                        ${level.stage === 3 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
-                                    </div>
-
-                                    <!-- Interdependent Section -->
-                                    <div class="relative flex-1 ${level.stage === 4 ? 'ring-4 ring-yellow-400 ring-opacity-80' : ''}">
-                                        <div class="bg-green-600 h-full flex flex-col justify-between p-3 text-white text-xs relative bradley-arrow-4">
-                                            <div class="text-center">
-                                                <div class="bg-white text-green-600 px-1 py-0.5 rounded text-xs font-bold mb-1 inline-block transform -skew-x-12">
-                                                    EQUIPES
-                                                </div>
-                                                <div class="text-sm font-bold mb-1">Interdependente</div>
-                                                <div class="text-xs leading-tight">
-                                                    • Responsabilidade da equipe<br/>
-                                                    • Cuidado com outros<br/>
-                                                    • Comprometimento coletivo<br/>
-                                                    • Responsabilização mútua<br/>
-                                                    • Comportamentos de ajuda
-                                                </div>
-                                            </div>
-                                            <div class="text-center text-xs italic">
-                                                "Sigo regras porque quero seguir"
-                                            </div>
-                                        </div>
-                                        ${level.stage === 4 ? '<div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">SEU NÍVEL</div>' : ''}
-                                    </div>
-                                </div>
-
-                                <!-- Motivation labels -->
-                                <div class="flex justify-between mt-4 text-center">
-                                    <div class="w-1/2 text-red-600">
-                                        <div class="font-bold text-sm">Motivação Externa</div>
-                                        <div class="font-semibold text-xs">Conformidade</div>
-                                        <div class="text-xs">Regras, Procedimentos, Protocolos</div>
-                                    </div>
-                                    <div class="w-1/2 text-blue-600">
-                                        <div class="font-bold text-sm">Motivação Interna</div>
-                                        <div class="font-semibold text-xs">Comprometimento</div>
-                                        <div class="text-xs">Auto Liderança, Modelo de Função,<br/>Influência e Engajamento</div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="text-center">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">DuPont Bradley Curve</h3>
+                            <p class="text-xl text-gray-600">Sua cultura de segurança está no nível:</p>
                         </div>
-
-                        <!-- Results Summary -->
-                        <div class="text-center mb-6">
-                            <div class="inline-block px-8 py-4 rounded-xl text-white font-bold text-xl ${level.color}">
-                                Nível ${level.level}
+                        
+                        <div class="text-center my-6">
+                            <div class="inline-block px-8 py-4 rounded-xl font-bold text-xl text-white ${level.color.replace('text-', 'bg-')}">
+                                ${level.level}
                             </div>
                             <p class="text-xl mt-3 text-gray-700">Pontuação da Avaliação: ${score.toFixed(1)}%</p>
                             ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
                         </div>
+
+                        <div class="relative max-w-4xl mx-auto mt-12 mb-8">
+                            <svg width="100%" height="400" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                                <style>
+                                    .axis-label { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: bold; fill: #4a5568; }
+                                    .stage-title { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: bold; text-anchor: middle; }
+                                    .stage-subtitle { font-family: 'Inter', sans-serif; font-size: 28px; text-anchor: middle; }
+                                    .stage-text { font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.2; }
+                                    .highlight { filter: drop-shadow(0px 0px 8px rgba(255, 255, 0, 0.8)); }
+                                </style>
+                                
+                                <line x1="100" y1="100" x2="100" y2="700" stroke="#4a5568" stroke-width="4" />
+                                <text x="50" y="400" transform="rotate(-90, 50, 400)" class="axis-label">Taxa de Lesões</text>
+                                
+                                <path d="M100 680 C 300 350, 600 200, 1100 120" stroke="#3730a3" stroke-width="8" fill="none" />
+                                
+                                <circle id="point-reactive" cx="120" cy="650" r="15" fill="#ef4444" />
+                                <circle id="point-dependent" cx="300" cy="350" r="15" fill="#f97316" />
+                                <circle id="point-independent" cx="600" cy="200" r="15" fill="#eab308" />
+                                <circle id="point-interdependent" cx="1100" cy="120" r="15" fill="#22c55e" />
+
+                                <g id="stage-reactive" class="${level.stage === 1 ? 'highlight' : ''}">
+                                    <rect x="100" y="550" width="200" height="150" fill="#ef4444" rx="10" opacity="0.8" />
+                                    <text x="200" y="590" class="stage-title text-white">Reativo</text>
+                                    <text x="200" y="620" class="stage-subtitle text-white">Instintos Naturais</text>
+                                </g>
+                                <g id="stage-dependent" class="${level.stage === 2 ? 'highlight' : ''}">
+                                    <rect x="300" y="400" width="250" height="150" fill="#f97316" rx="10" opacity="0.8" />
+                                    <text x="425" y="440" class="stage-title text-white">Dependente</text>
+                                    <text x="425" y="470" class="stage-subtitle text-white">Supervisão</text>
+                                </g>
+                                <g id="stage-independent" class="${level.stage === 3 ? 'highlight' : ''}">
+                                    <rect x="550" y="250" width="250" height="150" fill="#eab308" rx="10" opacity="0.8" />
+                                    <text x="675" y="290" class="stage-title text-white">Independente</text>
+                                    <text x="675" y="320" class="stage-subtitle text-white">Próprio</text>
+                                </g>
+                                <g id="stage-interdependent" class="${level.stage === 4 ? 'highlight' : ''}">
+                                    <rect x="800" y="100" width="350" height="150" fill="#22c55e" rx="10" opacity="0.8" />
+                                    <text x="975" y="140" class="stage-title text-white">Interdependente</text>
+                                    <text x="975" y="170" class="stage-subtitle text-white">Equipes</text>
+                                </g>
+                                
+                                <circle cx="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" cy="${level.stage === 1 ? 500 : level.stage === 2 ? 350 : level.stage === 3 ? 200 : 50}" r="20" fill="yellow" stroke="black" stroke-width="3" />
+                                <text x="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" y="${level.stage === 1 ? 500 : level.stage === 2 ? 350 : level.stage === 3 ? 200 : 50}" text-anchor="middle" alignment-baseline="middle" font-weight="bold" font-size="28" fill="black">
+                                    <tspan x="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" dy="-20">Seu</tspan>
+                                    <tspan x="${level.stage === 1 ? 200 : level.stage === 2 ? 425 : level.stage === 3 ? 675 : 975}" dy="30">Nível</tspan>
+                                </text>
+
+                            </svg>
+                        </div>
                         
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-lg mb-3 text-gray-800">Recomendações de Desenvolvimento:</h4>
-                            ${getBradleyRecommendations(level.stage)}
+                        <div class="bg-gray-100 p-6 rounded-lg">
+                            <h4 class="font-bold text-xl mb-3 text-gray-900">Recomendações de Desenvolvimento:</h4>
+                            <p class="text-gray-700 leading-relaxed">${getBradleyRecommendations(level.stage)}</p>
                         </div>
                     </div>
                     
                     <div class="text-center mt-8">
-                        <button onclick="showHomeScreen()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        <button onclick="showHomeScreen()" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
                             Fazer Nova Avaliação
                         </button>
                     </div>
                 </div>
             `;
         }
-
+        
         function getBradleyRecommendations(stage) {
             const recommendations = {
-                1: '<div><p class="mb-2"><strong>Área de Foco:</strong> Construir sistemas fundamentais de segurança e comprometimento da gestão</p><p><strong>Ações Chave:</strong> Estabelecer políticas claras de segurança, melhorar treinamento de supervisores, implementar sistemas básicos de medição e garantir conformidade regulatória.</p></div>',
-                2: '<div><p class="mb-2"><strong>Área de Foco:</strong> Desenvolver gestão sistemática de segurança e engajamento dos funcionários</p><p><strong>Ações Chave:</strong> Aprimorar programas de treinamento, implementar iniciativas de segurança baseadas em comportamento, melhorar comunicações de segurança e fortalecer relacionamentos supervisor-funcionário.</p></div>',
-                3: '<div><p class="mb-2"><strong>Área de Foco:</strong> Fomentar responsabilidade pessoal e comportamentos de segurança auto-dirigidos</p><p><strong>Ações Chave:</strong> Desenvolver habilidades de liderança em segurança, encorajar propriedade dos funcionários, implementar auto-avaliações e promover motivação intrínseca para segurança.</p></div>',
-                4: '<div><p class="mb-2"><strong>Área de Foco:</strong> Manter excelência através de colaboração em equipe e melhoria contínua</p><p><strong>Ações Chave:</strong> Fomentar coaching de segurança entre pares, implementar iniciativas de segurança baseadas em equipe, compartilhar melhores práticas e impulsionar inovação em práticas de segurança.</p></div>'
+                1: 'Para sair da fase **Reativa**, seu foco deve ser em construir uma base sólida. Isso inclui estabelecer políticas claras, implementar treinamento obrigatório e garantir que os procedimentos de segurança sejam rigorosamente seguidos. A liderança deve demonstrar comprometimento visível para influenciar o comportamento.',
+                2: 'No estágio **Dependente**, o próximo passo é ir além da conformidade. O foco é em desenvolver o engajamento e a responsabilidade. Incentive a participação dos funcionários em comitês de segurança e comece a implementar iniciativas que promovam a conscientização, como observações de segurança baseadas em comportamento e feedbacks construtivos.',
+                3: 'Na cultura **Independente**, as pessoas já entendem a importância da segurança. A meta agora é empoderá-las. Promova a liderança individual em segurança, capacitando os funcionários a identificar e corrigir riscos por conta própria. Incentive a inovação e o aprendizado contínuo com base em incidentes e quase-acidentes.',
+                4: 'O nível **Interdependente** é a excelência. Mantenha essa cultura forte ao focar na colaboração e no cuidado mútuo. Promova o coaching entre pares, crie equipes autogerenciadas para segurança e celebre os sucessos coletivos. A segurança se torna uma parte intrínseca do DNA da organização.'
             };
             return recommendations[stage];
         }
 
         function calculateHeartsScore() {
-            const categories = { reactive: 0, calculative: 0, proactive: 0, generative: 0 };
+            const scores = { reactive: 0, calculative: 0, proactive: 0, generative: 0 };
+            const counts = { reactive: 0, calculative: 0, proactive: 0, generative: 0 };
             
             questionSets.hearts.forEach(q => {
                 const answer = currentAnswers[q.id];
-                if (answer === 'yes') {
-                    categories[q.category] += 100;
-                } else if (answer === 'partial') {
-                    categories[q.category] += 50;
+                if (answer !== 'na') {
+                    counts[q.category]++;
+                    if (answer === 'yes') {
+                        scores[q.category] += 100;
+                    } else if (answer === 'partial') {
+                        scores[q.category] += 50;
+                    }
                 }
             });
             
-            return categories;
+            const results = {};
+            for (const cat in scores) {
+                results[cat] = counts[cat] > 0 ? (scores[cat] / counts[cat]).toFixed(0) : 0;
+            }
+            return results;
         }
 
         function getHeartsLevel() {
             const scores = calculateHeartsScore();
-            const maxScore = Math.max(...Object.values(scores));
-            return Object.keys(scores).find(key => scores[key] === maxScore) || 'reactive';
+            let maxScore = -1;
+            let dominantLevel = 'N/A';
+            
+            for(const level in scores) {
+                const score = parseInt(scores[level]);
+                if(score > maxScore) {
+                    maxScore = score;
+                    dominantLevel = level;
+                }
+            }
+            return dominantLevel;
         }
 
         function generateHeartsResults() {
@@ -656,130 +525,68 @@
             const dominantLevel = getHeartsLevel();
             const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
             
+            const levelColors = {
+                reactive: 'bg-rose-600',
+                calculative: 'bg-orange-500',
+                proactive: 'bg-yellow-500',
+                generative: 'bg-emerald-600'
+            };
+            
+            const levelData = {
+                reactive: {title: 'REATIVO', subtitle: 'Quem está me vigiando?', description: 'Fazemos pouco até que ocorram acidentes.'},
+                calculative: {title: 'CALCULATIVO', subtitle: 'Nós temos sistemas para gerenciar todos os perigos', description: 'Temos sistemas para gerenciar todos os perigos que conseguimos pensar.'},
+                proactive: {title: 'PROATIVO', subtitle: 'A melhoria é conduzida por valores', description: 'Tentamos antecipar os problemas que iremos enfrentar.'},
+                generative: {title: 'GENERATIVO', subtitle: 'SMS é como fazemos negócios aqui', description: 'A gestão de segurança é parte integral de tudo que fazemos.'}
+            };
+
+            const levelsHtml = Object.keys(levelData).map(key => {
+                const data = levelData[key];
+                const isDominant = key === dominantLevel;
+                return `
+                    <div class="relative ${isDominant ? 'ring-4 ring-yellow-400 rounded-lg' : ''}">
+                        <div class="${levelColors[key]} p-4 rounded-lg relative">
+                            <div class="flex items-center justify-between">
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-bold text-white">${data.title}</h4>
+                                    <p class="text-sm text-gray-200 italic">${data.subtitle}</p>
+                                    <p class="text-xs text-gray-200 mt-1">${data.description}</p>
+                                </div>
+                                <div class="text-3xl font-bold text-white ml-4">${scores[key]}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
             return `
-                <div class="space-y-6">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">Hearts and Minds Safety Culture</h3>
-                    
-                    <div class="bg-black p-8 rounded-xl shadow-xl text-white relative overflow-hidden">
-                        <!-- Background diagonal lines -->
-                        <div class="absolute inset-0 opacity-10">
-                            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <line x1="0" y1="100" x2="20" y2="0" stroke="white" stroke-width="0.5"/>
-                                <line x1="10" y1="100" x2="30" y2="0" stroke="white" stroke-width="0.5"/>
-                                <line x1="20" y1="100" x2="40" y2="0" stroke="white" stroke-width="0.5"/>
-                                <line x1="30" y1="100" x2="50" y2="0" stroke="white" stroke-width="0.5"/>
-                                <line x1="40" y1="100" x2="60" y2="0" stroke="white" stroke-width="0.5"/>
-                            </svg>
+                <div class="space-y-8">
+                    <div class="bg-gray-900 p-8 rounded-xl shadow-xl text-white relative">
+                        <div class="text-center mb-6">
+                            <h3 class="text-3xl font-bold mb-2">Hearts and Minds Safety Culture</h3>
+                            <p class="text-xl text-gray-400">Sua cultura dominante é:</p>
+                            <div class="inline-block px-6 py-2 rounded-full font-bold text-lg mt-3 ${levelColors[dominantLevel]}">
+                                ${dominantLevel.toUpperCase()}
+                            </div>
                         </div>
-
-                        <!-- Main diagonal arrow -->
-                        <div class="absolute left-12 top-8 bottom-8 w-0.5 bg-white transform rotate-12 origin-bottom opacity-30"></div>
                         
-                        <!-- Consciousness and Responsibility arrows -->
-                        <div class="absolute left-8 top-12 text-xs text-gray-300 transform -rotate-45 origin-center">
-                            <div class="whitespace-nowrap">
-                                <div>Aumento da</div>
-                                <div>consciência</div>
-                            </div>
+                        <div class="relative z-10 space-y-4">
+                            ${levelsHtml}
                         </div>
-                        <div class="absolute right-8 bottom-12 text-xs text-gray-300 transform rotate-45 origin-center">
-                            <div class="whitespace-nowrap">
-                                <div>Aumento da</div>
-                                <div>confiança e</div>
-                                <div>responsabilidade</div>
-                            </div>
-                        </div>
-
-                        <!-- Culture levels -->
-                        <div class="relative z-10 space-y-3 pt-4 pb-4">
-                            <!-- Generativo -->
-                            <div class="relative ${dominantLevel === 'generative' ? 'ring-4 ring-yellow-400' : ''}">
-                                <div class="bg-green-600 p-4 rounded-lg relative">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex-1">
-                                            <h4 class="text-lg font-bold text-white">GENERATIVO</h4>
-                                            <p class="text-sm text-green-100 italic">SMS é como fazemos negócios aqui</p>
-                                            <p class="text-xs text-green-100 mt-1">A gestão da segurança e saúde é uma parte integral de tudo que fazemos</p>
-                                        </div>
-                                        <div class="text-3xl font-bold text-white ml-4">${scores.generative}</div>
-                                    </div>
-                                    ${dominantLevel === 'generative' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
-                                </div>
-                            </div>
-
-                            <!-- Proativo -->
-                            <div class="relative ${dominantLevel === 'proactive' ? 'ring-4 ring-yellow-400' : ''}">
-                                <div class="bg-yellow-500 p-4 rounded-lg relative">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex-1">
-                                            <h4 class="text-lg font-bold text-black">PROATIVO</h4>
-                                            <p class="text-sm text-yellow-800 italic">A melhoria é conduzida por valores</p>
-                                            <p class="text-xs text-yellow-800 mt-1">Tentamos antecipar os problemas que iremos enfrentar</p>
-                                        </div>
-                                        <div class="text-3xl font-bold text-black ml-4">${scores.proactive}</div>
-                                    </div>
-                                    ${dominantLevel === 'proactive' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
-                                </div>
-                            </div>
-
-                            <!-- Calculativo -->
-                            <div class="relative ${dominantLevel === 'calculative' ? 'ring-4 ring-yellow-400' : ''}">
-                                <div class="bg-orange-500 p-4 rounded-lg relative">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex-1">
-                                            <h4 class="text-lg font-bold text-white">CALCULATIVO</h4>
-                                            <p class="text-sm text-orange-100 italic">Nós temos sistemas para gerenciar todos os perigos</p>
-                                            <p class="text-xs text-orange-100 mt-1">Nós temos sistemas para gerenciar todos os perigos que conseguimos pensar</p>
-                                        </div>
-                                        <div class="text-3xl font-bold text-white ml-4">${scores.calculative}</div>
-                                    </div>
-                                    ${dominantLevel === 'calculative' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
-                                </div>
-                            </div>
-
-                            <!-- Reativo -->
-                            <div class="relative ${dominantLevel === 'reactive' ? 'ring-4 ring-yellow-400' : ''}">
-                                <div class="bg-red-600 p-4 rounded-lg relative">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex-1">
-                                            <h4 class="text-lg font-bold text-white">REATIVO</h4>
-                                            <p class="text-sm text-red-100 italic">Quem está me vigiando?</p>
-                                            <p class="text-xs text-red-100 mt-1">Fazemos muito pouco até que ocorram acidentes, sendo então que tomamos medidas</p>
-                                        </div>
-                                        <div class="text-3xl font-bold text-white ml-4">${scores.reactive}</div>
-                                    </div>
-                                    ${dominantLevel === 'reactive' ? '<div class="absolute -right-12 top-1/2 transform -translate-y-1/2"><div class="bg-yellow-400 text-black px-3 py-1 rounded-r-lg text-sm font-bold whitespace-nowrap">SUA CULTURA</div></div>' : ''}
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pathological level indicator -->
-                        <div class="text-center mt-6 border-t border-gray-600 pt-4">
-                            <div class="text-gray-400 text-sm">
-                                <span class="font-bold">PATOLÓGICO</span><br/>
-                                <span class="text-xs">Quem se importa, desde que não sejamos pegos</span>
-                            </div>
-                        </div>
-
-                        <!-- Results summary -->
-                        <div class="mt-8 text-center relative z-10">
-                            <div class="inline-block px-8 py-4 rounded-xl font-bold text-xl bg-yellow-400 text-black">
-                                Cultura Dominante: ${dominantLevel.toUpperCase()}
-                            </div>
-                            ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-300"><p>* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</p></div>` : ''}
+                        
+                        <div class="text-center mt-8 text-sm text-gray-400">
+                            ${naCount > 0 ? `<p>* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</p>` : ''}
                         </div>
                     </div>
 
-                    <!-- Recommendations -->
                     <div class="bg-white p-6 rounded-xl shadow-lg">
                         <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-lg mb-3 text-gray-800">Características da Cultura Atual:</h4>
-                            ${getHeartsRecommendations(dominantLevel)}
+                            <h4 class="font-bold text-xl mb-3 text-gray-900">Próximos Passos e Recomendações:</h4>
+                            <p class="text-gray-700">${getHeartsRecommendations(dominantLevel)}</p>
                         </div>
                     </div>
                     
                     <div class="text-center mt-8">
-                        <button onclick="showHomeScreen()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        <button onclick="showHomeScreen()" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
                             Fazer Nova Avaliação
                         </button>
                     </div>
@@ -789,35 +596,24 @@
 
         function getHeartsRecommendations(level) {
             const recommendations = {
-                reactive: '<div><p class="mb-2"><strong>Estágio Reativo:</strong> A segurança é impulsionada pela evitação de acidentes e conformidade regulatória.</p><p><strong>Próximos Passos:</strong> Desenvolver consciência sobre segurança, estabelecer sistemas básicos de gestão e construir comprometimento da liderança.</p></div>',
-                calculative: '<div><p class="mb-2"><strong>Estágio Calculativo:</strong> Decisões de segurança baseadas em análise de custo-benefício e sistemas estruturados.</p><p><strong>Próximos Passos:</strong> Trabalhar no desenvolvimento de motivação intrínseca para segurança e valores compartilhados.</p></div>',
-                proactive: '<div><p class="mb-2"><strong>Estágio Proativo:</strong> As pessoas acreditam em fazer a coisa certa por segurança, guiadas por valores.</p><p><strong>Próximos Passos:</strong> Continuar construindo sobre estes valores positivos e integrar segurança em todos os processos.</p></div>',
-                generative: '<div><p class="mb-2"><strong>Estágio Generativo:</strong> A segurança é integral à forma como vocês fazem negócios.</p><p><strong>Próximos Passos:</strong> Manter esta excelência e compartilhar aprendizados com outros na indústria.</p></div>'
+                reactive: 'A cultura **Reativa** é caracterizada por uma abordagem reativa à segurança. Os próximos passos devem focar em estabelecer sistemas, como relatórios de incidentes e investigações formais, e em mudar a mentalidade de "culpa" para "aprendizado". O envolvimento da gestão é crucial para impulsionar a mudança.',
+                calculative: 'No estágio **Calculativo**, a segurança é vista como um sistema que pode ser gerenciado. O foco está na documentação e medição. Para evoluir, é preciso ir além dos números. Incentive a propriedade pessoal e o envolvimento emocional com a segurança, mostrando que a segurança é sobre cuidar de pessoas, não apenas sobre seguir processos.',
+                proactive: 'A cultura **Proativa** é um ótimo ponto de partida. As pessoas já agem com base em valores e crenças positivas. O próximo passo é transformar essa atitude individual em uma força coletiva. Promova a colaboração, o compartilhamento de melhores práticas e a liderança em segurança em todos os níveis da organização.',
+                generative: 'O estágio **Generativo** representa a excelência. A segurança já está no DNA da organização. O desafio é manter essa cultura vibrante. Isso envolve a busca contínua por inovação, o compartilhamento de conhecimento e a adaptação a novos riscos. A segurança é uma parte natural da tomada de decisões em todos os níveis.'
             };
             return recommendations[level];
         }
 
         function calculateMaturityScore() {
-            let totalScore = 0;
-            let validAnswers = 0;
-            
-            Object.values(currentAnswers).forEach(answer => {
-                if (answer !== 'na') {
-                    validAnswers++;
-                    if (answer === 'yes') totalScore += 100;
-                    else if (answer === 'partial') totalScore += 50;
-                }
-            });
-            
-            return validAnswers > 0 ? totalScore / validAnswers : 0;
+            return calculateScore(currentAnswers);
         }
 
         function getMaturityLevel(score) {
-            if (score >= 80) return { level: 'Melhorando Continuamente', color: 'bg-green-600' };
-            if (score >= 60) return { level: 'Gerenciando', color: 'bg-blue-500' };
+            if (score >= 80) return { level: 'Melhorando Continuamente', color: 'bg-emerald-600' };
+            if (score >= 60) return { level: 'Gerenciando', color: 'bg-sky-500' };
             if (score >= 40) return { level: 'Desenvolvendo', color: 'bg-yellow-500' };
             if (score >= 20) return { level: 'Emergente', color: 'bg-orange-500' };
-            return { level: 'Patológico', color: 'bg-red-500' };
+            return { level: 'Patológico', color: 'bg-rose-500' };
         }
 
         function generateMaturityResults() {
@@ -826,38 +622,41 @@
             const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
             
             return `
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold text-center mb-6">Resultados do Modelo de Maturidade de Cultura de Segurança</h3>
-                    
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <div class="text-center mb-4">
-                            <div class="inline-block px-6 py-3 rounded-full text-white font-bold ${level.color}">
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="text-center mb-6">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">Resultados do Modelo de Maturidade</h3>
+                            <p class="text-xl text-gray-600">Sua pontuação de maturidade é:</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="inline-block px-8 py-4 rounded-xl text-white font-bold text-xl ${level.color}">
                                 ${level.level}
                             </div>
-                            <p class="text-lg mt-2">Pontuação de Maturidade: ${score.toFixed(1)}%</p>
+                            <p class="text-lg mt-2 text-gray-700">Pontuação de Maturidade: ${score.toFixed(1)}%</p>
                             ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
                         </div>
                         
-                        <div class="w-full bg-gray-200 rounded-full h-4 mb-6">
+                        <div class="w-full bg-gray-200 rounded-full h-4 mt-6 mb-6">
                             <div class="h-4 rounded-full ${level.color}" style="width: ${score}%"></div>
                         </div>
                         
-                        <div class="grid grid-cols-5 gap-2 text-xs text-center mb-6">
-                            <div class="bg-red-500 text-white p-2 rounded">Patológico</div>
-                            <div class="bg-orange-500 text-white p-2 rounded">Emergente</div>
-                            <div class="bg-yellow-500 text-white p-2 rounded">Desenvolvendo</div>
-                            <div class="bg-blue-500 text-white p-2 rounded">Gerenciando</div>
-                            <div class="bg-green-600 text-white p-2 rounded">Melhorando</div>
+                        <div class="grid grid-cols-5 gap-2 text-xs text-center font-semibold text-white">
+                            <div class="bg-rose-500 p-2 rounded-full">Patológico</div>
+                            <div class="bg-orange-500 p-2 rounded-full">Emergente</div>
+                            <div class="bg-yellow-500 p-2 rounded-full">Desenvolvendo</div>
+                            <div class="bg-sky-500 p-2 rounded-full">Gerenciando</div>
+                            <div class="bg-emerald-600 p-2 rounded-full">Melhorando</div>
                         </div>
                         
-                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-                            <h4 class="font-bold mb-2">Próximos Passos:</h4>
-                            ${getMaturityRecommendations(score)}
+                        <div class="mt-8 p-6 bg-gray-100 rounded-lg">
+                            <h4 class="font-bold text-xl mb-2 text-gray-900">Próximos Passos:</h4>
+                            <p class="text-gray-700">${getMaturityRecommendations(score)}</p>
                         </div>
                     </div>
                     
                     <div class="text-center mt-8">
-                        <button onclick="showHomeScreen()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        <button onclick="showHomeScreen()" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
                             Fazer Nova Avaliação
                         </button>
                     </div>
@@ -866,13 +665,14 @@
         }
 
         function getMaturityRecommendations(score) {
-            if (score < 20) return '<p>Estabelecer sistemas básicos de gestão de segurança e comprometimento da liderança. Focar em práticas fundamentais de segurança.</p>';
-            if (score >= 20 && score < 40) return '<p>Desenvolver abordagens sistemáticas para gestão de segurança. Melhorar sistemas de treinamento e comunicação.</p>';
-            if (score >= 40 && score < 60) return '<p>Aprimorar engajamento e participação dos funcionários. Implementar medidas de segurança mais proativas.</p>';
-            if (score >= 60 && score < 80) return '<p>Focar na integração e consistência em todas as operações. Desenvolver capacidades avançadas de liderança em segurança.</p>';
-            return '<p>Manter excelência através de inovação e aprendizagem contínuas. Compartilhar melhores práticas com pares da indústria.</p>';
+            if (score < 20) return 'Para sair do nível **Patológico**, é crucial estabelecer sistemas básicos de gestão de segurança e obter um comprometimento visível da liderança. Focar em regras e conformidade é o primeiro passo para criar uma base de segurança.';
+            if (score >= 20 && score < 40) return 'No nível **Emergente**, sua organização está começando a reconhecer a importância da segurança. Os próximos passos incluem desenvolver abordagens sistemáticas para gestão de segurança, como treinamento mais estruturado e melhoria na comunicação bidirecional.';
+            if (score >= 40 && score < 60) return 'Sua organização está no estágio de **Desenvolvimento**. É hora de aprimorar o engajamento e a participação dos funcionários. Implemente medidas de segurança mais proativas, incentive a contribuição de todos e comece a integrar a segurança como um valor, não apenas como uma obrigação.';
+            if (score >= 60 && score < 80) return 'No nível de **Gerenciamento**, os sistemas estão bem estabelecidos. O foco agora deve ser na integração da segurança em todas as operações e na melhoria contínua. Desenvolva capacidades avançadas de liderança em segurança e promova uma cultura de responsabilidade mútua.';
+            return 'O nível de **Melhoria Contínua** representa um alto grau de maturidade. Para manter essa excelência, é importante focar em inovação, como o uso de tecnologia para prevenção de riscos, e em compartilhar as melhores práticas com pares da indústria. Sua cultura de segurança se torna uma vantagem competitiva.';
         }
 
+        // --- Data & History Management ---
         function saveAssessment() {
             const assessment = {
                 id: Date.now(),
@@ -880,11 +680,10 @@
                 methodology: currentMethodology,
                 date: new Date().toLocaleDateString('pt-BR'),
                 answers: {...currentAnswers},
-                score: currentMethodology === 'bradley' ? calculateBradleyScore() : 
-                       currentMethodology === 'maturity' ? calculateMaturityScore() : null,
-                level: currentMethodology === 'bradley' ? getBradleyLevel(calculateBradleyScore()).level :
+                score: currentMethodology !== 'hearts' ? calculateScore(currentAnswers) : null,
+                level: currentMethodology === 'bradley' ? getBradleyLevel(calculateScore(currentAnswers)).level :
                        currentMethodology === 'hearts' ? getHeartsLevel() :
-                       getMaturityLevel(calculateMaturityScore()).level
+                       getMaturityLevel(calculateScore(currentAnswers)).level
             };
             
             assessments.push(assessment);
@@ -903,7 +702,6 @@
             
             container.style.display = 'block';
             
-            // Group assessments by company and methodology
             const grouped = {};
             assessments.forEach(assessment => {
                 const key = `${assessment.company}-${assessment.methodology}`;
@@ -914,20 +712,19 @@
             });
             
             let historyHTML = '';
+            const methodologyNames = {
+                bradley: 'DuPont Bradley Curve',
+                hearts: 'Hearts and Minds',
+                maturity: 'Modelo de Maturidade'
+            };
             
             Object.keys(grouped).forEach(key => {
                 const [company, methodology] = key.split('-');
                 const companyAssessments = grouped[key].sort((a, b) => new Date(a.date.split('/').reverse().join('-')) - new Date(b.date.split('/').reverse().join('-')));
                 
-                const methodologyNames = {
-                    bradley: 'DuPont Bradley Curve',
-                    hearts: 'Hearts and Minds',
-                    maturity: 'Modelo de Maturidade'
-                };
-                
                 historyHTML += `
-                    <div class="mb-6 p-4 border rounded-lg">
-                        <h4 class="font-bold text-lg mb-2">${company} - ${methodologyNames[methodology]}</h4>
+                    <div class="mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50">
+                        <h4 class="font-bold text-lg text-gray-900 mb-2">${company} - ${methodologyNames[methodology]}</h4>
                         <div class="space-y-2">
                 `;
                 
@@ -936,28 +733,24 @@
                     let trend = '';
                     
                     if (prevAssessment && assessment.score !== null && prevAssessment.score !== null) {
-                        const difference = assessment.score - prevAssessment.score;
-                        if (difference > 0) {
-                            trend = `<span class="text-green-600">↑ +${difference.toFixed(1)}%</span>`;
-                        } else if (difference < 0) {
-                            trend = `<span class="text-red-600">↓ ${difference.toFixed(1)}%</span>`;
-                        } else {
-                            trend = `<span class="text-gray-600">→ 0%</span>`;
-                        }
+                        const difference = (assessment.score - prevAssessment.score).toFixed(1);
+                        const trendColor = difference > 0 ? 'text-emerald-600' : difference < 0 ? 'text-rose-600' : 'text-gray-600';
+                        const trendArrow = difference > 0 ? '↑' : difference < 0 ? '↓' : '→';
+                        trend = `<span class="${trendColor}">${trendArrow} ${Math.abs(difference)}%</span>`;
                     }
                     
                     historyHTML += `
-                        <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <div>
+                        <div class="flex justify-between items-center p-3 bg-white rounded-md shadow-sm">
+                            <div class="text-gray-700">
                                 <span class="font-medium">${assessment.date}</span>
-                                <span class="ml-2 text-gray-600">${assessment.level}</span>
+                                <span class="ml-2 text-gray-500">- ${assessment.level}</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                ${assessment.score !== null ? `<span>${assessment.score.toFixed(1)}%</span>` : ''}
+                                ${assessment.score !== null ? `<span class="font-semibold">${assessment.score.toFixed(1)}%</span>` : ''}
                                 ${trend}
-                                <button onclick="deleteAssessment(${assessment.id})" class="text-red-500 hover:text-red-700 ml-2">
-                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                <button onclick="deleteAssessment(${assessment.id})" class="text-rose-500 hover:text-rose-700 ml-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
+                                        <path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>
                                     </svg>
                                 </button>
                             </div>
@@ -972,6 +765,7 @@
             });
             
             content.innerHTML = historyHTML;
+            addExportButton();
         }
 
         function deleteAssessment(id) {
@@ -987,9 +781,10 @@
             document.getElementById('home-screen').style.display = 'block';
             currentMethodology = '';
             currentAnswers = {};
+            document.getElementById('questions-container').innerHTML = ''; // Limpa as questões
+            document.getElementById('results-container').innerHTML = ''; // Limpa os resultados
         }
 
-        // Export functionality
         function exportResults() {
             if (assessments.length === 0) {
                 alert('Não há dados para exportar.');
@@ -997,11 +792,11 @@
             }
             
             let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Empresa,Metodologia,Data,Nível,Pontuação\n";
+            csvContent += "Empresa,Metodologia,Data,Nivel,Pontuacao\n";
             
             assessments.forEach(assessment => {
                 const row = [
-                    assessment.company,
+                    assessment.company.replace(/,/g, ''),
                     assessment.methodology,
                     assessment.date,
                     assessment.level,
@@ -1019,28 +814,22 @@
             document.body.removeChild(link);
         }
 
-        // Add export button to historical results
         function addExportButton() {
             const container = document.getElementById('historical-results');
             if (container && assessments.length > 0) {
-                const exportBtn = document.createElement('button');
-                exportBtn.className = 'bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors mb-4';
-                exportBtn.textContent = 'Exportar Dados (CSV)';
-                exportBtn.onclick = exportResults;
-                
-                const content = document.getElementById('history-content');
-                if (!content.querySelector('button')) {
+                let exportBtn = container.querySelector('.export-btn');
+                if (!exportBtn) {
+                    exportBtn = document.createElement('button');
+                    exportBtn.className = 'export-btn flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors mb-4';
+                    exportBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L15.5 2z"/><path d="M12 17V9"/><path d="m8 13 4 4 4-4"/></svg>Exportar Dados (CSV)`;
+                    exportBtn.onclick = exportResults;
+                    
+                    const content = document.getElementById('history-content');
                     content.insertBefore(exportBtn, content.firstChild);
                 }
             }
         }
 
-        // Update loadHistoricalResults to include export button
-        const originalLoadHistoricalResults = loadHistoricalResults;
-        loadHistoricalResults = function() {
-            originalLoadHistoricalResults();
-            setTimeout(addExportButton, 100);
-        };
     </script>
 </body>
-</html> 
+</html>
