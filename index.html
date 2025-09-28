@@ -1,792 +1,653 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliação de Cultura de Segurança EHS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Avaliação de Cultura de Segurança EHS — Executivo</title>
+
+<!-- Tailwind CDN (ok para protótipo). Em produção, gerar build com purge. -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* Toasts leves e acessíveis */
+  .toast {
+    pointer-events: none;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: 420px;
+    z-index: 9999;
+  }
+  .toast-item {
+    pointer-events: auto;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .toast-enter {
+    opacity: 0; transform: translateY(10px);
+  }
+  .toast-enter-active {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* Foco visível para acessibilidade */
+  .focus-ring:focus {
+    outline: 3px solid #60a5fa; /* azul-400 */
+    outline-offset: 2px;
+  }
+
+  /* Botões de resposta (estado visual consistente) */
+  .ans-default { @apply border border-slate-300 text-slate-700 bg-white; }
+  .ans-yes     { @apply bg-green-600 text-white border-green-600; }
+  .ans-partial { @apply bg-amber-500 text-white border-amber-500; }
+  .ans-no      { @apply bg-rose-600 text-white border-rose-600; }
+  .ans-na      { @apply bg-slate-400 text-white border-slate-400; }
+
+  /* Tabela responsiva básica */
+  .table-wrap { overflow-x: auto; }
+</style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100 text-gray-800">
 
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <div id="app-container">
-            <div id="home-screen">
-                <header class="text-center mb-12">
-                    <div class="flex justify-center mb-4">
-                        <div class="h-16 w-16 text-emerald-600 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check">
-                                <path d="M20 13c0 5-2 9-8 11s-8-6-8-11a5.613 5.613 0 0 1 5-5.5 8.35 8.35 0 0 0 6 0c3 0 5 1.5 5 5.5Z"/>
-                                <path d="m9 12 2 2 4-4"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Avaliação de Cultura de Segurança EHS</h1>
-                    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                        Escolha uma metodologia para avaliar a maturidade da cultura de segurança da sua organização e comece a jornada para a excelência em EHS (Meio Ambiente, Saúde e Segurança).
-                    </p>
-                    
-                    <div class="max-w-md mx-auto mb-8">
-                        <label for="company-name" class="block text-sm font-medium text-gray-700 mb-2 text-left">Nome da Empresa/Projeto</label>
-                        <input type="text" id="company-name" placeholder="Digite o nome da empresa ou projeto" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors">
-                    </div>
-                </header>
-
-                <div class="grid lg:grid-cols-3 gap-8 mb-12">
-                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group assessment-card" data-methodology="bradley">
-                        <div class="bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 to-green-500 h-2 rounded-t-xl"></div>
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-emerald-100 p-3 rounded-full mr-4 text-emerald-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity">
-                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">DuPont Bradley Curve</h3>
-                                    <p class="text-sm text-gray-500">Est. 1995</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Avalie a jornada da sua organização desde a cultura reativa até a interdependente, baseada no modelo clássico da DuPont.
-                            </p>
-                            <div class="text-xs text-gray-500 mb-4">
-                                <span class="font-medium">Reativo → Dependente → Independente → Interdependente</span>
-                            </div>
-                            <button class="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold group-hover:bg-emerald-700 transition-colors">
-                                Iniciar Avaliação
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group assessment-card" data-methodology="hearts">
-                        <div class="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-2 rounded-t-xl"></div>
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-rose-100 p-3 rounded-full mr-4 text-rose-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-handshake">
-                                        <path d="m19 14-6 6c-3.15 3.15-11 3.15-11-5V5l7-7-2.5 2.5a6.5 6.5 0 0 1 5 5-6.5 6.5 0 0 1 2.5 2.5Z"/>
-                                        <path d="m12 18 5 5 5-5c1.4-1.4 1.4-3.6 0-5l-5-5c-1.4-1.4-3.6-1.4-5 0l-5 5-5 5"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Hearts and Minds</h3>
-                                    <p class="text-sm text-gray-500">Shell/Energy Institute</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Avalie a cultura de segurança através do modelo Hearts and Minds, focando nas atitudes e motivações por trás dos comportamentos.
-                            </p>
-                            <div class="text-xs text-gray-500 mb-4">
-                                <span class="font-medium">Reativo → Calculativo → Proativo → Generativo</span>
-                            </div>
-                            <button class="w-full bg-rose-600 text-white py-3 rounded-lg font-semibold group-hover:bg-rose-700 transition-colors">
-                                Iniciar Avaliação
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group assessment-card" data-methodology="maturity">
-                        <div class="bg-gradient-to-r from-gray-400 to-emerald-600 h-2 rounded-t-xl"></div>
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-sky-100 p-3 rounded-full mr-4 text-sky-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up">
-                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                                        <polyline points="16 7 22 7 22 13"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Modelo de Maturidade</h3>
-                                    <p class="text-sm text-gray-500">Hudson-Parker</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Avaliação abrangente da maturidade da cultura de segurança através de múltiplas dimensões organizacionais e capacidades.
-                            </p>
-                            <div class="text-xs text-gray-500 mb-4">
-                                <span class="font-medium">Patológico → Emergente → Desenvolvendo → Gerenciando → Melhorando</span>
-                            </div>
-                            <button class="w-full bg-sky-600 text-white py-3 rounded-lg font-semibold group-hover:bg-sky-700 transition-colors">
-                                Iniciar Avaliação
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="historical-results" class="mt-8 bg-white rounded-xl shadow-lg p-8" style="display: none;">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Histórico de Avaliações</h2>
-                    <div id="history-content"></div>
-                </div>
-            </div>
-
-            <div id="assessment-screen" style="display: none;">
-                <div class="flex items-center gap-4 mb-6">
-                    <button id="back-btn" class="flex items-center gap-2 text-emerald-600 hover:text-emerald-800 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
-                            <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
-                        </svg>
-                        <span class="font-medium">Voltar ao Menu</span>
-                    </button>
-                    <h2 id="assessment-title" class="text-2xl md:text-3xl font-bold text-gray-900"></h2>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm font-medium text-gray-700">Progresso</span>
-                        <span id="progress-text" class="text-sm text-gray-600">0/10</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-                        <div id="progress-bar" class="bg-emerald-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
-                </div>
-
-                <div id="questions-container"></div>
-
-                <div id="results-container" style="display: none;"></div>
-            </div>
-        </div>
+<body class="bg-slate-50 text-slate-800">
+  <!-- Header -->
+  <header class="bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <h1 class="text-2xl font-semibold">Avaliação de Cultura de Segurança EHS</h1>
+      <p class="opacity-80">Comparável entre sites, pronta para diretoria</p>
     </div>
+  </header>
 
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+  <main class="max-w-6xl mx-auto px-4 py-6 space-y-6">
+    <!-- Configuração inicial -->
+    <section class="bg-white rounded-xl shadow p-4 space-y-4">
+      <h2 class="text-xl font-semibold">1) Identificação</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="company">Empresa / Projeto</label>
+          <input id="company" type="text" class="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2" placeholder="Ex.: Projeto VLT — Instalação" aria-describedby="companyHelp" />
+          <p id="companyHelp" class="text-xs text-slate-500 mt-1">Obrigatório</p>
+        </div>
 
-        // Application State
-        let currentMethodology = '';
-        let currentAnswers = {};
-        let companyName = '';
-        let assessments = JSON.parse(localStorage.getItem('ehsAssessments') || '[]');
+        <div>
+          <label class="block text-sm font-medium mb-1" for="unit">Unidade / Site (opcional)</label>
+          <input id="unit" type="text" class="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2" placeholder="Ex.: Pátio A / Linha 2" />
+        </div>
 
-        // Question Sets
-        const questionSets = {
-            bradley: [
-                { id: 1, text: "A liderança demonstra ativamente a liderança de segurança através de ações visíveis", category: "leadership" },
-                { id: 2, text: "Os funcionários seguem as regras de segurança porque querem, não apenas porque têm que seguir", category: "motivation" },
-                { id: 3, text: "Incidentes de segurança são relatados sem medo de culpa ou punição", category: "culture" },
-                { id: 4, text: "As equipes identificam e abordam proativamente os riscos de segurança juntas", category: "teamwork" },
-                { id: 5, text: "Os procedimentos de segurança são regularmente revisados e melhorados com base no feedback dos funcionários", category: "improvement" },
-                { id: 6, text: "Os funcionários se sentem empoderados para parar o trabalho quando veem condições inseguras", category: "empowerment" },
-                { id: 7, text: "O desempenho de segurança é medido além das taxas de lesões", category: "metrics" },
-                { id: 8, text: "Há comunicação aberta sobre preocupações de segurança em todos os níveis", category: "communication" },
-                { id: 9, text: "Os funcionários cuidam ativamente da segurança uns dos outros", category: "care" },
-                { id: 10, text: "A segurança está integrada em todas as decisões e processos de negócios", category: "integration" }
-            ],
-            hearts: [
-                { id: 1, text: "As pessoas veem as regras de segurança como obstáculos burocráticos para realizar o trabalho", category: "reactive" },
-                { id: 2, text: "A segurança é impulsionada principalmente pela conformidade e evitação de penalidades", category: "reactive" },
-                { id: 3, text: "Os funcionários calculam riscos e benefícios antes de seguir procedimentos de segurança", category: "calculative" },
-                { id: 4, text: "As decisões de segurança são baseadas em análise de custo-benefício", category: "calculative" },
-                { id: 5, text: "As pessoas seguem regras de segurança porque acreditam que é a coisa certa a fazer", category: "proactive" },
-                { id: 6, text: "Os valores de segurança são compartilhados e praticados consistentemente em toda a organização", category: "proactive" },
-                { id: 7, text: "A segurança é 'simplesmente como fazemos negócios' - faz parte do nosso DNA", category: "generative" },
-                { id: 8, text: "A organização busca continuamente novas maneiras de melhorar a segurança", category: "generative" },
-                { id: 9, text: "O pensamento de segurança é aplicado a todos os aspectos do negócio", category: "generative" },
-                { id: 10, text: "As pessoas sentem responsabilidade pessoal pela segurança organizacional geral", category: "generative" }
-            ],
-            maturity: [
-                { id: 1, text: "A liderança fornece recursos adequados para programas de segurança", category: "leadership" },
-                { id: 2, text: "Há papéis e responsabilidades de segurança claros em todos os níveis", category: "organization" },
-                { id: 3, text: "O treinamento de segurança é abrangente e regularmente atualizado", category: "competence" },
-                { id: 4, text: "As avaliações de risco são completas e regularmente revisadas", category: "risk" },
-                { id: 5, text: "Há comunicação de segurança bidirecional eficaz", category: "communication" },
-                { id: 6, text: "O desempenho de segurança é regularmente monitorado e analisado", category: "monitoring" },
-                { id: 7, text: "As lições aprendidas com incidentes são efetivamente compartilhadas", category: "learning" },
-                { id: 8, text: "Os sistemas de gestão de segurança são bem integrados", category: "systems" },
-                { id: 9, text: "Contratados e fornecedores atendem aos nossos padrões de segurança", category: "partnerships" },
-                { id: 10, text: "A avaliação da cultura de segurança é conduzida regularmente", category: "assessment" }
-            ]
-        };
+        <div>
+          <label class="block text-sm font-medium mb-1" for="assessor">Avaliador (opcional)</label>
+          <input id="assessor" type="text" class="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2" placeholder="Ex.: Eng. Leandro" />
+        </div>
+      </div>
 
-        // --- Core Functions ---
-        document.addEventListener('DOMContentLoaded', function() {
-            loadHistoricalResults();
-            setupEventListeners();
-        });
+      <div class="flex flex-wrap items-center gap-3">
+        <button id="startBradley" class="focus-ring rounded-lg px-4 py-2 bg-slate-300 text-slate-600 cursor-not-allowed" disabled aria-disabled="true">
+          Iniciar — Bradley Curve
+        </button>
+        <button id="startHM" class="focus-ring rounded-lg px-4 py-2 bg-slate-300 text-slate-600 cursor-not-allowed" disabled aria-disabled="true">
+          Iniciar — Hearts & Minds
+        </button>
+      </div>
+      <p class="text-xs text-slate-500">Os botões são habilitados ao preencher “Empresa / Projeto”.</p>
+    </section>
 
-        function setupEventListeners() {
-            document.querySelectorAll('.assessment-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const methodology = this.getAttribute('data-methodology');
-                    const companyNameInput = document.getElementById('company-name').value.trim();
-                    
-                    if (!companyNameInput) {
-                        alert('Por favor, insira o nome da empresa ou projeto antes de continuar.');
-                        document.getElementById('company-name').focus();
-                        return;
-                    }
-                    
-                    companyName = companyNameInput;
-                    startAssessment(methodology);
-                });
-            });
+    <!-- Container das avaliações -->
+    <section id="assessmentContainer" class="bg-white rounded-xl shadow p-4 hidden space-y-4" aria-live="polite" aria-atomic="true">
+      <div class="flex items-center justify-between gap-4">
+        <h2 id="assessmentTitle" class="text-xl font-semibold">Avaliação</h2>
+        <div class="text-sm text-slate-600">
+          Progresso: <span id="progressCount">0</span>/<span id="progressTotal">0</span> | Válidas: <span id="validCount">0</span>
+        </div>
+      </div>
 
-            document.getElementById('back-btn').addEventListener('click', function() {
-                showHomeScreen();
-            });
-        }
+      <!-- Perguntas -->
+      <div id="questionsList" class="grid gap-3"></div>
 
-        function startAssessment(methodology) {
-            currentMethodology = methodology;
-            currentAnswers = {};
-            
-            const titles = {
-                bradley: 'Avaliação DuPont Bradley Curve',
-                hearts: 'Avaliação Hearts and Minds',
-                maturity: 'Avaliação Modelo de Maturidade'
-            };
-            
-            document.getElementById('assessment-title').textContent = titles[methodology];
-            document.getElementById('home-screen').style.display = 'none';
-            document.getElementById('assessment-screen').style.display = 'block';
-            
-            renderQuestions();
-        }
+      <!-- Ações -->
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <button id="finishBtn" class="focus-ring rounded-lg px-4 py-2 bg-blue-600 text-white">
+          Finalizar Avaliação
+        </button>
+        <button id="cancelBtn" class="focus-ring rounded-lg px-4 py-2 bg-slate-200 text-slate-800">
+          Cancelar
+        </button>
+      </div>
+    </section>
 
-        function renderQuestions() {
-            const questions = questionSets[currentMethodology];
-            const container = document.getElementById('questions-container');
-            const resultsContainer = document.getElementById('results-container');
-            
-            container.innerHTML = '';
-            resultsContainer.style.display = 'none';
-            container.style.display = 'block';
-            
-            updateProgress();
-            
-            questions.forEach(question => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-4';
-                questionDiv.innerHTML = `
-                    <p class="text-lg md:text-xl font-medium mb-4 text-gray-800">${question.text}</p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <button class="answer-btn yes-btn" data-question="${question.id}" data-answer="yes">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
-                                <path d="M20 6 9 17l-5-5"/>
-                            </svg>
-                            <span>Sim</span>
-                        </button>
-                        <button class="answer-btn partial-btn" data-question="${question.id}" data-answer="partial">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus">
-                                <path d="M5 12h14"/>
-                            </svg>
-                            <span>Parcial</span>
-                        </button>
-                        <button class="answer-btn no-btn" data-question="${question.id}" data-answer="no">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
-                                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
-                            </svg>
-                            <span>Não</span>
-                        </button>
-                        <button class="answer-btn na-btn" data-question="${question.id}" data-answer="na">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban">
-                                <circle cx="12" cy="12" r="10"/><path d="m4.2 4.2 15.6 15.6"/>
-                            </svg>
-                            <span>N/A</span>
-                        </button>
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-            
-            document.querySelectorAll('.answer-btn').forEach(btn => {
-                btn.className = 'answer-btn flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200';
-                btn.addEventListener('click', function() {
-                    const questionId = this.getAttribute('data-question');
-                    const answer = this.getAttribute('data-answer');
-                    handleAnswer(questionId, answer);
-                });
-            });
-        }
+    <!-- Resultados -->
+    <section class="bg-white rounded-xl shadow p-4 space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-semibold">2) Histórico & Relatórios</h2>
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="exportCsvBtn" class="focus-ring rounded-lg px-3 py-2 bg-emerald-600 text-white">Exportar CSV</button>
+          <button id="clearAllBtn" class="focus-ring rounded-lg px-3 py-2 bg-rose-600 text-white">Limpar Histórico</button>
+        </div>
+      </div>
 
-        function handleAnswer(questionId, answer) {
-            currentAnswers[questionId] = answer;
-            
-            const questionButtons = document.querySelectorAll(`[data-question="${questionId}"]`);
-            questionButtons.forEach(btn => {
-                const btnAnswer = btn.getAttribute('data-answer');
-                btn.className = 'answer-btn flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all text-sm';
-                
-                if (btnAnswer === answer) {
-                    const colors = {
-                        yes: 'bg-emerald-500 text-white shadow-lg',
-                        partial: 'bg-yellow-500 text-white shadow-lg',
-                        no: 'bg-rose-500 text-white shadow-lg',
-                        na: 'bg-slate-500 text-white shadow-lg'
-                    };
-                    btn.classList.add(...colors[answer].split(' '));
-                } else {
-                    btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200', 'border', 'border-gray-200');
-                }
-            });
-            
-            updateProgress();
-            
-            const totalQuestions = questionSets[currentMethodology].length;
-            if (Object.keys(currentAnswers).length === totalQuestions) {
-                setTimeout(() => showResults(), 500);
-            }
-        }
+      <div class="table-wrap">
+        <table class="min-w-full text-sm">
+          <thead>
+            <tr class="bg-slate-100 text-slate-700">
+              <th class="text-left px-3 py-2">Data</th>
+              <th class="text-left px-3 py-2">Empresa</th>
+              <th class="text-left px-3 py-2">Unidade</th>
+              <th class="text-left px-3 py-2">Metodologia</th>
+              <th class="text-left px-3 py-2">Índice</th>
+              <th class="text-left px-3 py-2">Nível</th>
+              <th class="text-left px-3 py-2">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500">Ordenado por <code>timestamp</code> ISO (mais recente primeiro).</p>
+    </section>
 
-        function updateProgress() {
-            const totalQuestions = questionSets[currentMethodology].length;
-            const answeredCount = Object.keys(currentAnswers).length;
-            const percentage = (answeredCount / totalQuestions) * 100;
-            
-            document.getElementById('progress-text').textContent = `${answeredCount}/${totalQuestions}`;
-            document.getElementById('progress-bar').style.width = `${percentage}%`;
-        }
+    <!-- Bradley Curve (inline SVG, local) -->
+    <section class="bg-white rounded-xl shadow p-4 space-y-2">
+      <h2 class="text-xl font-semibold">3) Referência — Bradley Curve (visual)</h2>
+      <p class="text-sm text-slate-600">Curva de maturidade comportamental. Útil como analogia rápida para diretoria.</p>
+      <div class="overflow-x-auto">
+        <svg viewBox="0 0 940 260" role="img" aria-label="Bradley Curve" class="w-[900px] h-auto mx-auto">
+          <!-- Eixos e faixas simplificadas -->
+          <defs>
+            <linearGradient id="grad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#ef4444"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+          <rect x="20" y="20" width="900" height="200" fill="url(#grad)" opacity="0.08" />
+          <text x="60" y="230" font-size="12" fill="#475569">Reactive</text>
+          <text x="300" y="230" font-size="12" fill="#475569">Dependent</text>
+          <text x="540" y="230" font-size="12" fill="#475569">Independent</text>
+          <text x="780" y="230" font-size="12" fill="#475569">Interdependent</text>
+          <path d="M 40 190 C 220 200, 360 160, 520 120 S 820 60, 900 40" stroke="#0ea5e9" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+    </section>
+  </main>
 
-        function showResults() {
-            document.getElementById('questions-container').style.display = 'none';
-            document.getElementById('results-container').style.display = 'block';
-            
-            const resultsHTML = generateResults();
-            document.getElementById('results-container').innerHTML = resultsHTML;
-            
-            saveAssessment();
-        }
+  <!-- Toast container -->
+  <div id="toast" class="toast space-y-2"></div>
 
-        function generateResults() {
-            if (currentMethodology === 'bradley') {
-                return generateBradleyResults();
-            } else if (currentMethodology === 'hearts') {
-                return generateHeartsResults();
-            } else if (currentMethodology === 'maturity') {
-                return generateMaturityResults();
-            }
-        }
+<script>
+/* ===============================
+   Schema, Storage & Utilitários
+   =============================== */
+const SCHEMA_VERSION = 2; // incrementado p/ timestamp ISO + campos separados
+const STORAGE_KEY = 'ehsAssessments_v2';
 
-        function calculateScore(answers) {
-            let totalScore = 0;
-            let validAnswers = 0;
-            
-            Object.values(answers).forEach(answer => {
-                if (answer !== 'na') {
-                    validAnswers++;
-                    if (answer === 'yes') totalScore += 100;
-                    else if (answer === 'partial') totalScore += 50;
-                }
-            });
-            
-            return validAnswers > 0 ? totalScore / validAnswers : 0;
-        }
+function nowISO() { return new Date().toISOString(); }
 
-        function getBradleyLevel(score) {
-            if (score >= 80) return { level: 'Interdependente', color: 'text-green-600', stage: 4 };
-            if (score >= 60) return { level: 'Independente', color: 'text-yellow-600', stage: 3 };
-            if (score >= 40) return { level: 'Dependente', color: 'text-orange-600', stage: 2 };
-            return { level: 'Reativo', color: 'text-red-600', stage: 1 };
-        }
+function loadAll() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { version: SCHEMA_VERSION, items: [] };
+    const data = JSON.parse(raw);
+    // Migração básica se versão antiga
+    if (!data.version) {
+      return { version: SCHEMA_VERSION, items: [] };
+    }
+    if (!Array.isArray(data.items)) data.items = [];
+    return data;
+  } catch (e) {
+    console.error('Erro ao ler storage:', e);
+    toast('Não foi possível ler o histórico salvo. Um novo histórico será iniciado.', 'warn');
+    return { version: SCHEMA_VERSION, items: [] };
+  }
+}
 
-        function generateBradleyResults() {
-            const score = calculateScore(currentAnswers);
-            const level = getBradleyLevel(score);
-            const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
-            
-            // Link para a imagem SVG da curva de Bradley original, hospedada para fácil acesso
-            const bradleySvgUrl = 'https://raw.githubusercontent.com/IgorFreitasD/EHS-Culture-Assessment/main/bradley_curve_original.svg';
+function saveAll(data) {
+  try {
+    const payload = JSON.stringify({ version: SCHEMA_VERSION, items: data.items || [] });
+    localStorage.setItem(STORAGE_KEY, payload);
+  } catch (e) {
+    console.error('Erro ao salvar storage:', e);
+    toast('Falha ao salvar dados localmente. Verifique espaço e permissões.', 'error');
+  }
+}
 
-            return `
-                <div class="space-y-8">
-                    <div class="bg-white p-8 rounded-xl shadow-xl">
-                        <div class="text-center">
-                            <h3 class="text-3xl font-bold text-gray-900 mb-2">DuPont Bradley Curve</h3>
-                            <p class="text-xl text-gray-600">Sua cultura de segurança está no nível:</p>
-                        </div>
-                        
-                        <div class="text-center my-6">
-                            <div class="inline-block px-8 py-4 rounded-xl font-bold text-xl text-white ${level.color.replace('text-', 'bg-')}">
-                                ${level.level}
-                            </div>
-                            <p class="text-xl mt-3 text-gray-700">Pontuação da Avaliação: ${score.toFixed(1)}%</p>
-                            ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
-                        </div>
+function addRecord(record) {
+  const db = loadAll();
+  db.items.unshift(record); // mais recente no topo
+  saveAll(db);
+}
 
-                        <div class="relative max-w-4xl mx-auto my-8">
-                            <img src="${bradleySvgUrl}" alt="Curva de Bradley Original" class="w-full h-auto">
-                        </div>
-                        
-                        <div class="bg-gray-100 p-6 rounded-lg">
-                            <h4 class="font-bold text-xl mb-3 text-gray-900">Recomendações de Desenvolvimento:</h4>
-                            <p class="text-gray-700 leading-relaxed">${getBradleyRecommendations(level.stage)}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-8">
-                        <button onclick="showHomeScreen()" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
-                            Fazer Nova Avaliação
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function getBradleyRecommendations(stage) {
-            const recommendations = {
-                1: 'Para sair da fase **Reativa**, seu foco deve ser em construir uma base sólida. Isso inclui estabelecer políticas claras, implementar treinamento obrigatório e garantir que os procedimentos de segurança sejam rigorosamente seguidos. A liderança deve demonstrar comprometimento visível para influenciar o comportamento.',
-                2: 'No estágio **Dependente**, o próximo passo é ir além da conformidade. O foco é em desenvolver o engajamento e a responsabilidade. Incentive a participação dos funcionários em comitês de segurança e comece a implementar iniciativas que promovam a conscientização, como observações de segurança baseadas em comportamento e feedbacks construtivos.',
-                3: 'Na cultura **Independente**, as pessoas já entendem a importância da segurança. A meta agora é empoderá-las. Promova a liderança individual em segurança, capacitando os funcionários a identificar e corrigir riscos por conta própria. Incentive a inovação e o aprendizado contínuo com base em incidentes e quase-acidentes.',
-                4: 'O nível **Interdependente** é a excelência. Mantenha essa cultura forte ao focar na colaboração e no cuidado mútuo. Promova o coaching entre pares, crie equipes autogerenciadas para segurança e celebre os sucessos coletivos. A segurança se torna uma parte intrínseca do DNA da organização.'
-            };
-            return recommendations[stage];
-        }
+function clearAll() {
+  localStorage.removeItem(STORAGE_KEY);
+}
 
-        function calculateHeartsScore() {
-            const scores = { reactive: 0, calculative: 0, proactive: 0, generative: 0 };
-            const counts = { reactive: 0, calculative: 0, proactive: 0, generative: 0 };
-            
-            questionSets.hearts.forEach(q => {
-                const answer = currentAnswers[q.id];
-                if (answer !== 'na') {
-                    counts[q.category]++;
-                    if (answer === 'yes') {
-                        scores[q.category] += 100;
-                    } else if (answer === 'partial') {
-                        scores[q.category] += 50;
-                    }
-                }
-            });
-            
-            const results = {};
-            for (const cat in scores) {
-                results[cat] = counts[cat] > 0 ? (scores[cat] / counts[cat]).toFixed(0) : 0;
-            }
-            return results;
-        }
+/* ==============
+   Toast simples
+   ============== */
+function toast(message, type='info') {
+  const container = document.getElementById('toast');
+  const el = document.createElement('div');
+  const base = 'toast-item rounded-lg px-4 py-3 shadow text-sm border';
+  const palette = {
+    info:  'bg-white text-slate-800 border-slate-200',
+    ok:    'bg-emerald-50 text-emerald-900 border-emerald-200',
+    warn:  'bg-amber-50 text-amber-900 border-amber-200',
+    error: 'bg-rose-50 text-rose-900 border-rose-200'
+  };
+  el.className = `${base} ${palette[type] || palette.info} toast-enter`;
+  el.innerHTML = `<div class="font-medium">${message}</div>`;
+  container.appendChild(el);
+  // animação
+  requestAnimationFrame(()=> el.classList.add('toast-enter-active'));
+  // remover
+  setTimeout(()=> {
+    el.classList.remove('toast-enter-active');
+    setTimeout(()=> el.remove(), 250);
+  }, 3500);
+}
 
-        function getHeartsLevel() {
-            const scores = calculateHeartsScore();
-            let maxScore = -1;
-            let dominantLevel = 'N/A';
-            
-            for(const level in scores) {
-                const score = parseInt(scores[level]);
-                if(score > maxScore) {
-                    maxScore = score;
-                    dominantLevel = level;
-                }
-            }
-            return dominantLevel;
-        }
+/* ==========================
+   Banco de Perguntas (demo)
+   ========================== */
+/* Bradley: 10 itens simples (sim/parcial/não/na).
+   Hearts & Minds: 12 itens com estágio para inversão coerente. */
 
-        function generateHeartsResults() {
-            const scores = calculateHeartsScore();
-            const dominantLevel = getHeartsLevel();
-            const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
-            
-            const levelColors = {
-                reactive: 'bg-rose-600',
-                calculative: 'bg-orange-500',
-                proactive: 'bg-yellow-500',
-                generative: 'bg-emerald-600'
-            };
-            
-            const levelData = {
-                reactive: {title: 'REATIVO', subtitle: 'Quem está me vigiando?', description: 'Fazemos pouco até que ocorram acidentes.'},
-                calculative: {title: 'CALCULATIVO', subtitle: 'Nós temos sistemas para gerenciar todos os perigos', description: 'Temos sistemas para gerenciar todos os perigos que conseguimos pensar.'},
-                proactive: {title: 'PROATIVO', subtitle: 'A melhoria é conduzida por valores', description: 'Tentamos antecipar os problemas que iremos enfrentar.'},
-                generative: {title: 'GENERATIVO', subtitle: 'SMS é como fazemos negócios aqui', description: 'A gestão de segurança é parte integral de tudo que fazemos.'}
-            };
+const QUESTIONS = {
+  bradley: [
+    { id:'b1', text:'Regras são seguidas de forma consistente.', dim:'Compliance' },
+    { id:'b2', text:'Supervisores reforçam comportamentos seguros diariamente.', dim:'Leadership' },
+    { id:'b3', text:'Trabalhadores param a tarefa quando percebem risco.', dim:'Empowerment' },
+    { id:'b4', text:'Lições aprendidas são compartilhadas rapidamente.', dim:'Learning' },
+    { id:'b5', text:'Planejamento de risco é feito antes de atividades críticas.', dim:'Planning' },
+    { id:'b6', text:'Investigamos quase-acidentes com qualidade.', dim:'Learning' },
+    { id:'b7', text:'Comunicação sobre riscos é clara e frequente.', dim:'Communication' },
+    { id:'b8', text:'Manutenções são realizadas antes da falha.', dim:'Reliability' },
+    { id:'b9', text:'Indicadores proativos são acompanhados por líderes.', dim:'Performance' },
+    { id:'b10',text:'Terceiros seguem o mesmo padrão da casa.', dim:'Contractor' },
+  ],
+  heartsMinds: [
+    // Itens regressivos (devem ser invertidos: yes=0 / partial=50 / no=100)
+    { id:'hm1',  text:'As pessoas veem regras como obstáculo para produzir.', stage:'Reactive', dim:'Attitude', regressive:true },
+    { id:'hm2',  text:'Investigações focam principalmente em “quem errou”.', stage:'Reactive', dim:'Learning', regressive:true },
+    { id:'hm3',  text:'Liderança enfatiza metas de produção sobre segurança.', stage:'Calculative', dim:'Leadership', regressive:true },
+    { id:'hm4',  text:'Indicadores reativos dominam a conversa (acidentes).', stage:'Calculative', dim:'Performance', regressive:true },
+    // Itens progressivos (escala direta: yes=100 / partial=50 / no=0)
+    { id:'hm5',  text:'As pessoas se sentem empoderadas para parar o trabalho.', stage:'Proactive', dim:'Empowerment', regressive:false },
+    { id:'hm6',  text:'Feedbacks positivos sobre segurança são frequentes.', stage:'Proactive', dim:'Leadership', regressive:false },
+    { id:'hm7',  text:'Aprendemos com o que dá certo (Safety-II).', stage:'Proactive', dim:'Learning', regressive:false },
+    { id:'hm8',  text:'Treinamentos são práticos e baseados em risco real.', stage:'Proactive', dim:'Capability', regressive:false },
+    { id:'hm9',  text:'Times planejam juntos as barreiras preventivas.', stage:'Generative', dim:'Planning', regressive:false },
+    { id:'hm10', text:'Terceiros cocriam soluções e padrões conosco.', stage:'Generative', dim:'Contractor', regressive:false },
+    { id:'hm11', text:'Indicadores proativos guiam decisões estratégicas.', stage:'Generative', dim:'Performance', regressive:false },
+    { id:'hm12', text:'Compartilhamos lições com outras unidades/empresas.', stage:'Generative', dim:'Learning', regressive:false },
+  ]
+};
 
-            const levelsHtml = Object.keys(levelData).map(key => {
-                const data = levelData[key];
-                const isDominant = key === dominantLevel;
-                return `
-                    <div class="relative ${isDominant ? 'ring-4 ring-yellow-400 rounded-lg' : ''}">
-                        <div class="${levelColors[key]} p-4 rounded-lg relative">
-                            <div class="flex items-center justify-between">
-                                <div class="flex-1">
-                                    <h4 class="text-lg font-bold text-white">${data.title}</h4>
-                                    <p class="text-sm text-gray-200 italic">${data.subtitle}</p>
-                                    <p class="text-xs text-gray-200 mt-1">${data.description}</p>
-                                </div>
-                                <div class="text-3xl font-bold text-white ml-4">${scores[key]}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            
-            return `
-                <div class="space-y-8">
-                    <div class="bg-gray-900 p-8 rounded-xl shadow-xl text-white relative">
-                        <div class="text-center mb-6">
-                            <h3 class="text-3xl font-bold mb-2">Hearts and Minds Safety Culture</h3>
-                            <p class="text-xl text-gray-400">Sua cultura dominante é:</p>
-                            <div class="inline-block px-6 py-2 rounded-full font-bold text-lg mt-3 ${levelColors[dominantLevel]}">
-                                ${dominantLevel.toUpperCase()}
-                            </div>
-                        </div>
-                        
-                        <div class="relative z-10 space-y-4">
-                            ${levelsHtml}
-                        </div>
-                        
-                        <div class="text-center mt-8 text-sm text-gray-400">
-                            ${naCount > 0 ? `<p>* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</p>` : ''}
-                        </div>
-                    </div>
+/* ===================================
+   Estado de execução e renderização
+   =================================== */
+let current = null; // { methodology:'bradley'|'hm', answers: Map, startedAtISO, meta:{company,unit,assessor} }
 
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-xl mb-3 text-gray-900">Próximos Passos e Recomendações:</h4>
-                            <p class="text-gray-700">${getHeartsRecommendations(dominantLevel)}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-8">
-                        <button onclick="showHomeScreen()" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
-                            Fazer Nova Avaliação
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
+const $ = (sel)=> document.querySelector(sel);
+const elCompany   = $('#company');
+const elUnit      = $('#unit');
+const elAssessor  = $('#assessor');
+const btnStartBrad= $('#startBradley');
+const btnStartHM  = $('#startHM');
+const assessmentContainer = $('#assessmentContainer');
+const questionsList = $('#questionsList');
+const finishBtn = $('#finishBtn');
+const cancelBtn = $('#cancelBtn');
+const progressCount = $('#progressCount');
+const progressTotal = $('#progressTotal');
+const validCount = $('#validCount');
+const assessmentTitle = $('#assessmentTitle');
+const historyBody = $('#historyBody');
 
-        function getHeartsRecommendations(level) {
-            const recommendations = {
-                reactive: 'A cultura **Reativa** é caracterizada por uma abordagem reativa à segurança. Os próximos passos devem focar em estabelecer sistemas, como relatórios de incidentes e investigações formais, e em mudar a mentalidade de "culpa" para "aprendizado". O envolvimento da gestão é crucial para impulsionar a mudança.',
-                calculative: 'No estágio **Calculativo**, a segurança é vista como um sistema que pode ser gerenciado. O foco está na documentação e medição. Para evoluir, é preciso ir além dos números. Incentive a propriedade pessoal e o envolvimento emocional com a segurança, mostrando que a segurança é sobre cuidar de pessoas, não apenas sobre seguir processos.',
-                proactive: 'A cultura **Proativa** é um ótimo ponto de partida. As pessoas já agem com base em valores e crenças positivas. O próximo passo é transformar essa atitude individual em uma força coletiva. Promova a colaboração, o compartilhamento de melhores práticas e a liderança em segurança em todos os níveis da organização.',
-                generative: 'O estágio **Generativo** representa a excelência. A segurança já está no DNA da organização. O desafio é manter essa cultura vibrante. Isso envolve a busca contínua por inovação, o uso de tecnologia para prevenção de riscos, e a adaptação a novos desafios.'
-            };
-            return recommendations[level];
-        }
+function enableStartButtonsIfValid() {
+  const hasCompany = elCompany.value.trim().length > 0;
+  [btnStartBrad, btnStartHM].forEach(btn=>{
+    btn.disabled = !hasCompany;
+    btn.setAttribute('aria-disabled', String(!hasCompany));
+    if (hasCompany) {
+      btn.className = 'focus-ring rounded-lg px-4 py-2 bg-blue-600 text-white';
+    } else {
+      btn.className = 'focus-ring rounded-lg px-4 py-2 bg-slate-300 text-slate-600 cursor-not-allowed';
+    }
+  });
+}
 
-        function calculateMaturityScore() {
-            return calculateScore(currentAnswers);
-        }
+elCompany.addEventListener('input', enableStartButtonsIfValid);
 
-        function getMaturityLevel(score) {
-            if (score >= 80) return { level: 'Melhorando Continuamente', color: 'bg-emerald-600' };
-            if (score >= 60) return { level: 'Gerenciando', color: 'bg-sky-500' };
-            if (score >= 40) return { level: 'Desenvolvendo', color: 'bg-yellow-500' };
-            if (score >= 20) return { level: 'Emergente', color: 'bg-orange-500' };
-            return { level: 'Patológico', color: 'bg-rose-500' };
-        }
+/* Render de perguntas com delegação de eventos */
+function renderAssessment(methodology) {
+  current = {
+    methodology,
+    answers: new Map(), // id -> 'yes'|'partial'|'no'|'na'
+    startedAtISO: nowISO(),
+    meta: {
+      company: elCompany.value.trim(),
+      unit: elUnit.value.trim(),
+      assessor: elAssessor.value.trim()
+    }
+  };
 
-        function generateMaturityResults() {
-            const score = calculateMaturityScore();
-            const level = getMaturityLevel(score);
-            const naCount = Object.values(currentAnswers).filter(a => a === 'na').length;
-            
-            return `
-                <div class="space-y-8">
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <div class="text-center mb-6">
-                            <h3 class="text-3xl font-bold text-gray-900 mb-2">Resultados do Modelo de Maturidade</h3>
-                            <p class="text-xl text-gray-600">Sua pontuação de maturidade é:</p>
-                        </div>
-                        
-                        <div class="text-center">
-                            <div class="inline-block px-8 py-4 rounded-xl text-white font-bold text-xl ${level.color}">
-                                ${level.level}
-                            </div>
-                            <p class="text-lg mt-2 text-gray-700">Pontuação de Maturidade: ${score.toFixed(1)}%</p>
-                            ${naCount > 0 ? `<div class="mt-2 text-sm text-gray-600">* ${naCount} questões marcadas como Não Aplicável foram excluídas da pontuação</div>` : ''}
-                        </div>
-                        
-                        <div class="w-full bg-gray-200 rounded-full h-4 mt-6 mb-6">
-                            <div class="h-4 rounded-full ${level.color}" style="width: ${score}%"></div>
-                        </div>
-                        
-                        <div class="grid grid-cols-5 gap-2 text-xs text-center font-semibold text-white">
-                            <div class="bg-rose-500 p-2 rounded-full">Patológico</div>
-                            <div class="bg-orange-500 p-2 rounded-full">Emergente</div>
-                            <div class="bg-yellow-500 p-2 rounded-full">Desenvolvendo</div>
-                            <div class="bg-sky-500 p-2 rounded-full">Gerenciando</div>
-                            <div class="bg-emerald-600 p-2 rounded-full">Melhorando</div>
-                        </div>
-                        
-                        <div class="mt-8 p-6 bg-gray-100 rounded-lg">
-                            <h4 class="font-bold text-xl mb-2 text-gray-900">Próximos Passos:</h4>
-                            <p class="text-gray-700">${getMaturityRecommendations(score)}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-8">
-                        <button onclick="showHomeScreen()" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
-                            Fazer Nova Avaliação
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
+  const bank = (methodology==='bradley') ? QUESTIONS.bradley : QUESTIONS.heartsMinds;
+  assessmentTitle.textContent = methodology==='bradley' ? 'Bradley Curve — Questionário' : 'Hearts & Minds — Questionário';
+  questionsList.innerHTML = '';
+  bank.forEach(q=>{
+    const row = document.createElement('div');
+    row.className = 'rounded-lg border border-slate-200 p-3 flex flex-col gap-2';
+    row.setAttribute('data-id', q.id);
 
-        function getMaturityRecommendations(score) {
-            if (score < 20) return 'Para sair do nível **Patológico**, é crucial estabelecer sistemas básicos de gestão de segurança e obter um comprometimento visível da liderança. Focar em regras e conformidade é o primeiro passo para criar uma base de segurança.';
-            if (score >= 20 && score < 40) return 'No nível **Emergente**, sua organização está começando a reconhecer a importância da segurança. Os próximos passos incluem desenvolver abordagens sistemáticas para gestão de segurança, como treinamento mais estruturado e melhoria na comunicação bidirecional.';
-            if (score >= 40 && score < 60) return 'Sua organização está no estágio de **Desenvolvimento**. É hora de aprimorar o engajamento e a participação dos funcionários. Implemente medidas de segurança mais proativas, incentive a contribuição de todos e comece a integrar a segurança como um valor, não apenas como uma obrigação.';
-            if (score >= 60 && score < 80) return 'No nível de **Gerenciamento**, os sistemas estão bem estabelecidos. O foco agora deve ser na integração da segurança em todas as operações e na melhoria contínua. Desenvolva capacidades avançadas de liderança em segurança e promova uma cultura de responsabilidade mútua.';
-            return 'O nível de **Melhoria Contínua** representa um alto grau de maturidade. Para manter essa excelência, é importante focar em inovação, como o uso de tecnologia para prevenção de riscos, e em compartilhar as melhores práticas com pares da indústria. Sua cultura de segurança se torna uma vantagem competitiva.';
-        }
+    row.innerHTML = `
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div class="font-medium">${q.text}</div>
+          <div class="text-xs text-slate-500">Dimensão: ${q.dim}${q.stage ? ` · Estágio: ${q.stage}`:''}</div>
+        </div>
+        <div class="flex items-center gap-2">
+          ${renderAnswerBtn(q.id,'yes','Sim')}
+          ${renderAnswerBtn(q.id,'partial','Parcial')}
+          ${renderAnswerBtn(q.id,'no','Não')}
+          ${renderAnswerBtn(q.id,'na','N/A')}
+        </div>
+      </div>
+    `;
+    questionsList.appendChild(row);
+  });
 
-        // --- Data & History Management ---
-        function saveAssessment() {
-            const assessment = {
-                id: Date.now(),
-                company: companyName,
-                methodology: currentMethodology,
-                date: new Date().toLocaleDateString('pt-BR'),
-                answers: {...currentAnswers},
-                score: currentMethodology !== 'hearts' ? calculateScore(currentAnswers) : null,
-                level: currentMethodology === 'bradley' ? getBradleyLevel(calculateScore(currentAnswers)).level :
-                       currentMethodology === 'hearts' ? getHeartsLevel() :
-                       getMaturityLevel(calculateScore(currentAnswers)).level
-            };
-            
-            assessments.push(assessment);
-            localStorage.setItem('ehsAssessments', JSON.stringify(assessments));
-            loadHistoricalResults();
-        }
+  progressTotal.textContent = bank.length;
+  progressCount.textContent = '0';
+  validCount.textContent = '0';
 
-        function loadHistoricalResults() {
-            const container = document.getElementById('historical-results');
-            const content = document.getElementById('history-content');
-            
-            if (assessments.length === 0) {
-                container.style.display = 'none';
-                return;
-            }
-            
-            container.style.display = 'block';
-            
-            const grouped = {};
-            assessments.forEach(assessment => {
-                const key = `${assessment.company}-${assessment.methodology}`;
-                if (!grouped[key]) {
-                    grouped[key] = [];
-                }
-                grouped[key].push(assessment);
-            });
-            
-            let historyHTML = '';
-            const methodologyNames = {
-                bradley: 'DuPont Bradley Curve',
-                hearts: 'Hearts and Minds',
-                maturity: 'Modelo de Maturidade'
-            };
-            
-            Object.keys(grouped).forEach(key => {
-                const [company, methodology] = key.split('-');
-                const companyAssessments = grouped[key].sort((a, b) => new Date(a.date.split('/').reverse().join('-')) - new Date(b.date.split('/').reverse().join('-')));
-                
-                historyHTML += `
-                    <div class="mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">${company} - ${methodologyNames[methodology]}</h4>
-                        <div class="space-y-2">
-                `;
-                
-                companyAssessments.forEach((assessment, index) => {
-                    const prevAssessment = index > 0 ? companyAssessments[index - 1] : null;
-                    let trend = '';
-                    
-                    if (prevAssessment && assessment.score !== null && prevAssessment.score !== null) {
-                        const difference = (assessment.score - prevAssessment.score).toFixed(1);
-                        const trendColor = difference > 0 ? 'text-emerald-600' : difference < 0 ? 'text-rose-600' : 'text-gray-600';
-                        const trendArrow = difference > 0 ? '↑' : difference < 0 ? '↓' : '→';
-                        trend = `<span class="${trendColor}">${trendArrow} ${Math.abs(difference)}%</span>`;
-                    }
-                    
-                    historyHTML += `
-                        <div class="flex justify-between items-center p-3 bg-white rounded-md shadow-sm">
-                            <div class="text-gray-700">
-                                <span class="font-medium">${assessment.date}</span>
-                                <span class="ml-2 text-gray-500">- ${assessment.level}</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                ${assessment.score !== null ? `<span class="font-semibold">${assessment.score.toFixed(1)}%</span>` : ''}
-                                ${trend}
-                                <button onclick="deleteAssessment(${assessment.id})" class="text-rose-500 hover:text-rose-700 ml-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
-                                        <path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                historyHTML += `
-                        </div>
-                    </div>
-                `;
-            });
-            
-            content.innerHTML = historyHTML;
-            addExportButton();
-        }
+  assessmentContainer.classList.remove('hidden');
+  window.scrollTo({ top: assessmentContainer.offsetTop - 20, behavior:'smooth' });
+}
 
-        function deleteAssessment(id) {
-            if (confirm('Tem certeza que deseja excluir esta avaliação?')) {
-                assessments = assessments.filter(assessment => assessment.id !== id);
-                localStorage.setItem('ehsAssessments', JSON.stringify(assessments));
-                loadHistoricalResults();
-            }
-        }
+function renderAnswerBtn(qid, val, label) {
+  const classes = 'ans-default focus-ring rounded-md px-3 py-1.5 border text-xs';
+  const aria = `aria-pressed="false" aria-label="${label}"`;
+  return `<button class="${classes}" data-qid="${qid}" data-val="${val}" ${aria}>${label}</button>`;
+}
 
-        function showHomeScreen() {
-            document.getElementById('assessment-screen').style.display = 'none';
-            document.getElementById('home-screen').style.display = 'block';
-            currentMethodology = '';
-            currentAnswers = {};
-            document.getElementById('questions-container').innerHTML = ''; // Limpa as questões
-            document.getElementById('results-container').innerHTML = ''; // Limpa os resultados
-        }
+questionsList.addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-qid]');
+  if (!btn || !current) return;
 
-        function exportResults() {
-            if (assessments.length === 0) {
-                alert('Não há dados para exportar.');
-                return;
-            }
-            
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Empresa,Metodologia,Data,Nivel,Pontuacao\n";
-            
-            assessments.forEach(assessment => {
-                const row = [
-                    assessment.company.replace(/,/g, ''),
-                    assessment.methodology,
-                    assessment.date,
-                    assessment.level,
-                    assessment.score !== null ? assessment.score.toFixed(1) : 'N/A'
-                ].join(',');
-                csvContent += row + "\n";
-            });
-            
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "avaliacoes_cultura_seguranca.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+  const qid = btn.getAttribute('data-qid');
+  const val = btn.getAttribute('data-val');
 
-        function addExportButton() {
-            const container = document.getElementById('historical-results');
-            if (container && assessments.length > 0) {
-                let exportBtn = container.querySelector('.export-btn');
-                if (!exportBtn) {
-                    exportBtn = document.createElement('button');
-                    exportBtn.className = 'export-btn flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors mb-4';
-                    exportBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L15.5 2z"/><path d="M12 17V9"/><path d="m8 13 4 4 4-4"/></svg>Exportar Dados (CSV)`;
-                    exportBtn.onclick = exportResults;
-                    
-                    const content = document.getElementById('history-content');
-                    content.insertBefore(exportBtn, content.firstChild);
-                }
-            }
-        }
+  // zera estados visuais do grupo
+  const group = btn.parentElement.querySelectorAll('button[data-qid="'+qid+'"]');
+  group.forEach(b=>{
+    b.classList.remove('ans-yes','ans-partial','ans-no','ans-na');
+    b.classList.remove('text-white');
+    b.setAttribute('aria-pressed', 'false');
+    b.classList.add('ans-default');
+  });
 
-    </script>
+  // aplica estado do selecionado
+  btn.classList.remove('ans-default');
+  btn.setAttribute('aria-pressed', 'true');
+  if (val==='yes') btn.classList.add('ans-yes');
+  else if (val==='partial') btn.classList.add('ans-partial');
+  else if (val==='no') btn.classList.add('ans-no');
+  else btn.classList.add('ans-na');
+
+  current.answers.set(qid, val);
+  updateProgress();
+});
+
+function updateProgress() {
+  const bank = (current.methodology==='bradley') ? QUESTIONS.bradley : QUESTIONS.heartsMinds;
+  const answered = Array.from(current.answers.values()).filter(v=>!!v).length;
+  const valids = Array.from(current.answers.values()).filter(v=>v!=='na').length;
+  progressCount.textContent = answered.toString();
+  validCount.textContent = valids.toString();
+}
+
+/* ==========================
+   Scoring e Classificação
+   ========================== */
+function scoreBradley(answers) {
+  // Escala direta: yes=100, partial=50, no=0, na=ignora
+  const bank = QUESTIONS.bradley;
+  let sum = 0, cnt = 0;
+  const byDim = {};
+  bank.forEach(q=>{
+    const v = answers.get(q.id);
+    if (!v || v==='na') return;
+    const s = v==='yes' ? 100 : v==='partial' ? 50 : 0;
+    sum += s; cnt++;
+    byDim[q.dim] = byDim[q.dim] || { sum:0, n:0 };
+    byDim[q.dim].sum += s; byDim[q.dim].n += 1;
+  });
+  const index = cnt ? +(sum/cnt).toFixed(1) : 0;
+
+  // Nível aproximado pela média (faixas podem ser ajustadas)
+  const level =
+    index >= 85 ? 'Interdependent' :
+    index >= 70 ? 'Independent' :
+    index >= 55 ? 'Dependent' :
+    'Reactive';
+
+  const dims = Object.fromEntries(Object.entries(byDim).map(([k,v])=>[k, +(v.sum/v.n).toFixed(1)]));
+
+  return { index, level, dims };
+}
+
+function scoreHeartsMinds(answers) {
+  // Regressivos invertidos: yes=0, partial=50, no=100
+  // Progressivos diretos:   yes=100, partial=50, no=0
+  const bank = QUESTIONS.heartsMinds;
+
+  const stageAgg = {}; // média por estágio
+  const dimAgg = {};   // média por dimensão
+  let sum = 0, cnt = 0;
+
+  function scoreVal(v, regressive) {
+    if (v==='na' || !v) return null;
+    if (regressive) {
+      return v==='yes' ? 0 : v==='partial' ? 50 : 100; // 'no' é positivo
+    } else {
+      return v==='yes' ? 100 : v==='partial' ? 50 : 0; // direto
+    }
+  }
+
+  bank.forEach(q=>{
+    const v = answers.get(q.id);
+    const s = scoreVal(v, !!q.regressive);
+    if (s==null) return;
+
+    sum += s; cnt++;
+
+    stageAgg[q.stage] = stageAgg[q.stage] || { sum:0, n:0 };
+    stageAgg[q.stage].sum += s; stageAgg[q.stage].n += 1;
+
+    dimAgg[q.dim] = dimAgg[q.dim] || { sum:0, n:0 };
+    dimAgg[q.dim].sum += s; dimAgg[q.dim].n += 1;
+  });
+
+  const index = cnt ? +(sum/cnt).toFixed(1) : 0;
+
+  // Nível dominante: maior média entre estágios
+  const stageAverages = Object.fromEntries(
+    Object.entries(stageAgg).map(([k,v])=>[k, +(v.sum/v.n).toFixed(1)])
+  );
+
+  let dominantStage = 'Reactive';
+  let best = -1;
+  for (const [st, val] of Object.entries(stageAverages)) {
+    if (val > best) { best = val; dominantStage = st; }
+  }
+
+  const dims = Object.fromEntries(Object.entries(dimAgg).map(([k,v])=>[k, +(v.sum/v.n).toFixed(1)]));
+
+  return { index, level: dominantStage, stages: stageAverages, dims };
+}
+
+/* ==========================
+   Finalização e Histórico
+   ========================== */
+finishBtn.addEventListener('click', ()=>{
+  if (!current) return;
+  const company = current.meta.company;
+  if (!company) { toast('Informe a Empresa/Projeto para salvar.', 'warn'); return; }
+
+  let result;
+  if (current.methodology==='bradley') {
+    result = scoreBradley(current.answers);
+  } else {
+    result = scoreHeartsMinds(current.answers);
+  }
+
+  const record = {
+    timestamp: nowISO(),
+    company: current.meta.company,
+    unit: current.meta.unit || '',
+    assessor: current.meta.assessor || '',
+    methodology: current.methodology,
+    result
+  };
+
+  addRecord(record);
+  toast('Avaliação salva no dispositivo.', 'ok');
+  current = null;
+  assessmentContainer.classList.add('hidden');
+  renderHistory();
+});
+
+cancelBtn.addEventListener('click', ()=>{
+  current = null;
+  assessmentContainer.classList.add('hidden');
+  toast('Avaliação cancelada.', 'info');
+});
+
+/* ==========================
+   Histórico (tabela)
+   ========================== */
+function renderHistory() {
+  const db = loadAll();
+  // ordenar por timestamp ISO (mais recente primeiro)
+  db.items.sort((a,b)=> (a.timestamp < b.timestamp ? 1 : -1));
+  historyBody.innerHTML = '';
+
+  if (db.items.length===0) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="px-3 py-2 text-slate-500" colspan="7">Sem registros ainda.</td>`;
+    historyBody.appendChild(tr);
+    return;
+  }
+
+  db.items.forEach((r, idx)=>{
+    const d = new Date(r.timestamp);
+    const dateBR = d.toLocaleString('pt-BR', { dateStyle:'short', timeStyle:'short' });
+    const idxStr = (r.result.index!=null) ? `${r.result.index}` : '—';
+    const lvlStr = r.result.level || '—';
+
+    const tr = document.createElement('tr');
+    tr.className = idx % 2 ? 'bg-white' : 'bg-slate-50';
+    tr.innerHTML = `
+      <td class="px-3 py-2">${dateBR}</td>
+      <td class="px-3 py-2">${escapeCsvField(r.company)}</td>
+      <td class="px-3 py-2">${escapeCsvField(r.unit || '')}</td>
+      <td class="px-3 py-2">${r.methodology==='bradley' ? 'Bradley' : 'Hearts & Minds'}</td>
+      <td class="px-3 py-2">${idxStr}</td>
+      <td class="px-3 py-2">${lvlStr}</td>
+      <td class="px-3 py-2">
+        <button class="focus-ring text-blue-700 underline text-xs" data-act="view" data-i="${idx}">Ver</button>
+        <button class="focus-ring text-rose-700 underline text-xs ml-2" data-act="del" data-i="${idx}">Excluir</button>
+      </td>
+    `;
+    historyBody.appendChild(tr);
+  });
+}
+
+historyBody.addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-act]');
+  if (!btn) return;
+  const act = btn.getAttribute('data-act');
+  const i = +btn.getAttribute('data-i');
+  const db = loadAll();
+  if (act==='view') {
+    const r = db.items[i];
+    const pretty = JSON.stringify(r, null, 2);
+    console.log('Registro:', r);
+    toast('Registro impresso no console para inspeção técnica.', 'info');
+  } else if (act==='del') {
+    db.items.splice(i,1);
+    saveAll(db);
+    renderHistory();
+    toast('Registro excluído.', 'ok');
+  }
+});
+
+/* ==========================
+   Exportação CSV (BOM)
+   ========================== */
+function escapeCsvField(s) {
+  const str = (s==null) ? '' : String(s);
+  // Se contiver aspas, vírgula, quebra de linha: envolver em aspas e escapar aspas internas
+  if (/[",\r\n;]/.test(str)) {
+    return `"${str.replace(/"/g,'""')}"`;
+  }
+  return str;
+}
+
+function exportCSV() {
+  const db = loadAll();
+  const items = db.items || [];
+
+  const sep = ','; // padronize aqui; pode trocar para ';' se preferir regional
+  const header = [
+    'timestampISO','dataLocal','empresa','unidade','assessor','metodologia','indice','nivel'
+  ];
+
+  const rows = [header.join(sep)];
+  items.forEach(r=>{
+    const dt = new Date(r.timestamp);
+    const dataLocal = dt.toLocaleString('pt-BR', { dateStyle:'short', timeStyle:'short' });
+    const idx = (r.result.index!=null) ? r.result.index : '';
+    const lvl = r.result.level || '';
+    const line = [
+      escapeCsvField(r.timestamp),
+      escapeCsvField(dataLocal),
+      escapeCsvField(r.company),
+      escapeCsvField(r.unit||''),
+      escapeCsvField(r.assessor||''),
+      escapeCsvField(r.methodology==='bradley'?'Bradley':'Hearts & Minds'),
+      escapeCsvField(idx),
+      escapeCsvField(lvl),
+    ].join(sep);
+    rows.push(line);
+  });
+
+  const csv = rows.join('\r\n');
+  // BOM UTF-8 para abrir correto no Excel
+  const blob = new Blob(["\uFEFF"+csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const dateName = new Date().toISOString().slice(0,19).replace(/[:T]/g,'-');
+  a.download = `EHS_Culture_${dateName}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  toast('CSV exportado com sucesso.', 'ok');
+}
+
+/* ==========================
+   Botões primários
+   ========================== */
+btnStartBrad.addEventListener('click', ()=> renderAssessment('bradley'));
+btnStartHM.addEventListener('click', ()=> renderAssessment('hm'));
+document.getElementById('exportCsvBtn').addEventListener('click', exportCSV);
+document.getElementById('clearAllBtn').addEventListener('click', ()=>{
+  clearAll();
+  renderHistory();
+  toast('Histórico limpo deste dispositivo.', 'ok');
+});
+
+/* Inicialização */
+enableStartButtonsIfValid();
+renderHistory();
+</script>
 </body>
 </html>
