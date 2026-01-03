@@ -36,11 +36,36 @@
   }
 
   /* Botões de resposta (estado visual consistente) */
-  .ans-default { @apply border border-slate-300 text-slate-700 bg-white; }
-  .ans-yes     { @apply bg-green-600 text-white border-green-600; }
-  .ans-partial { @apply bg-amber-500 text-white border-amber-500; }
-  .ans-no      { @apply bg-rose-600 text-white border-rose-600; }
-  .ans-na      { @apply bg-slate-400 text-white border-slate-400; }
+  .ans-default { border: 1px solid #cbd5e1; color: #334155; background: #fff; }
+  .ans-yes     { background: #16a34a; color: #fff; border-color: #16a34a; }
+  .ans-partial { background: #f59e0b; color: #fff; border-color: #f59e0b; }
+  .ans-no      { background: #e11d48; color: #fff; border-color: #e11d48; }
+  .ans-na      { background: #94a3b8; color: #fff; border-color: #94a3b8; }
+
+  /* Alerta visual colorido ao responder */
+  .answer-row {
+    transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .answer-row.answered-yes {
+    border-color: #16a34a;
+    background: #f0fdf4;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+  }
+  .answer-row.answered-partial {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  }
+  .answer-row.answered-no {
+    border-color: #e11d48;
+    background: #fff1f2;
+    box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
+  }
+  .answer-row.answered-na {
+    border-color: #94a3b8;
+    background: #f8fafc;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
+  }
 
   /* Tabela responsiva básica */
   .table-wrap { overflow-x: auto; }
@@ -332,7 +357,7 @@ function renderAssessment(methodology) {
   questionsList.innerHTML = '';
   bank.forEach(q=>{
     const row = document.createElement('div');
-    row.className = 'rounded-lg border border-slate-200 p-3 flex flex-col gap-2';
+    row.className = 'answer-row rounded-lg border border-slate-200 p-3 flex flex-col gap-2';
     row.setAttribute('data-id', q.id);
 
     row.innerHTML = `
@@ -372,6 +397,8 @@ questionsList.addEventListener('click', (e)=>{
 
   const qid = btn.getAttribute('data-qid');
   const val = btn.getAttribute('data-val');
+  const row = btn.closest('[data-id]');
+  const rowClasses = ['answered-yes','answered-partial','answered-no','answered-na'];
 
   // zera estados visuais do grupo
   const group = btn.parentElement.querySelectorAll('button[data-qid="'+qid+'"]');
@@ -389,6 +416,11 @@ questionsList.addEventListener('click', (e)=>{
   else if (val==='partial') btn.classList.add('ans-partial');
   else if (val==='no') btn.classList.add('ans-no');
   else btn.classList.add('ans-na');
+
+  if (row) {
+    row.classList.remove(...rowClasses);
+    row.classList.add(`answered-${val}`);
+  }
 
   current.answers.set(qid, val);
   updateProgress();
